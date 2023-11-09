@@ -9,6 +9,14 @@ npm run check-format ||
     echo '❌ Prettier check failed. Run 'npm run format', add your changes, then try to commit again.';
     false;
 )
+echo '✅ Formatting test passed. Testing code style...';
+
+# Check ESLint standards
+npm run check-lint ||
+(
+        echo '❌ ESLint check failed. Make the required changes listed above, add your changes, then try to commit again.';
+        false; 
+)
 
 # Pipeline handles verifies above checks, followed by Jest check and Build check.
 
