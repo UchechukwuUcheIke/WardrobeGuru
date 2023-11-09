@@ -1,12 +1,6 @@
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { Text } from "react-native";
 
 export default function HomePage() {
-
-    return (
-        <Text>
-            Homepage
-
-            
-        </Text>
-    );
+    return <Text>Homepage</Text>;
 }

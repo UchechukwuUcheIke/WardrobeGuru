@@ -1,0 +1,16 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+echo '👷 Checking format and style before committing...'
+
+# Check Prettier standards
+npm run check-format ||
+(
+    echo '❌ Prettier check failed. Run 'npm run format', add your changes, then try to commit again.';
+    false;
+)
+
+# Pipeline handles verifies above checks, followed by Jest check and Build check.
+
+# If everything passes... Now we can commit
+echo '✅ All tests passed. Committing your code.';
