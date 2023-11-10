@@ -1,7 +1,6 @@
 import { StyleSheet, Button, Image, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
-import { Fragment } from 'react';
-import AppButton from '../Component/Button';
+
 
 export default function HomePage() {
 

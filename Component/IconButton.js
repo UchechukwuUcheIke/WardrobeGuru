@@ -1,6 +1,7 @@
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
-function AppButton ({ onPress, title, containerStylesheet, textStylesheet }) {
+
+function IconButton ({ onPress, name, containerStylesheet, iconStylesheet }) {
     const containerStyle = containerStylesheet | {}
     const textStyle = textStylesheet | {}
     return (
@@ -9,12 +10,12 @@ function AppButton ({ onPress, title, containerStylesheet, textStylesheet }) {
       onPress={onPress}
       style={containerStyle}
     >
-      <Text 
-      style={textStyle}>
-        {title}</Text>
+      <Icon
+      name={name}
+      style={iconStylesheet}
+      />
     </TouchableOpacity>
     )
 };
 
-
-export default AppButton;
+export default IconButton;
