@@ -5,7 +5,7 @@ import Icon from 'react-native-vector-icons/MaterialIcons'; // Assuming usage of
 import { NavigationContainer } from '@react-navigation/native';
 import { createMaterialTopTabNavigator } from '@react-navigation/material-top-tabs';
 
-import Data from "../demo_dataset.json";
+import Data from "../Wardrobe_dataset.json";
 
 
 const Tab = createMaterialTopTabNavigator();
