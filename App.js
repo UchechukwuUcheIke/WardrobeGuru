@@ -23,10 +23,18 @@ export default function App() {
         <NavigationContainer>
             <Tab.Navigator
                 screenOptions={({ route }) => ({
+                    headerStyle: {
+                        backgroundColor: "#8088E9",
+                    },
+                    headerTintColor: "#fff",
+                    headerTitleStyle: {
+                        fontWeight: "bold",
+                    },
+                    headerTitleAlign: "center",
                     tabBarIcon: ({ focused, color, size }) => {
                         const icons = {
                             Generator: "compass",
-                            "Saved Outfits": "bookmark",
+                            Outfits: "bookmark",
                             Home: "home",
                             Wardrobe: "shirt",
                             Account: "person-circle",
@@ -44,15 +52,35 @@ export default function App() {
                             />
                         );
                     },
-                    tabBarActiveTintColor: "lavender",
+                    tabBarActiveTintColor: "#8088E9",
                     tabBarInactiveTintColor: "gray",
                 })}
             >
-                <Tab.Screen name="Generator" component={GeneratorPage} />
-                <Tab.Screen name="Saved Outfits" component={OutfitPage} />
-                <Tab.Screen name="Home" component={HomePage} />
-                <Tab.Screen name="Wardrobe" component={WardrobePage} />
-                <Tab.Screen name="Account" component={AccountPage} />
+                <Tab.Screen
+                    name="Generator"
+                    component={GeneratorPage}
+                    options={{ title: "Outfit Generator" }}
+                />
+                <Tab.Screen
+                    name="Outfits"
+                    component={OutfitPage}
+                    options={{ title: "Saved Outfits" }}
+                />
+                <Tab.Screen
+                    name="Home"
+                    component={HomePage}
+                    options={{ title: "Home" }}
+                />
+                <Tab.Screen
+                    name="Wardrobe"
+                    component={WardrobePage}
+                    options={{ title: "Wardrobe" }}
+                />
+                <Tab.Screen
+                    name="Account"
+                    component={AccountPage}
+                    options={{ title: "Account" }}
+                />
             </Tab.Navigator>
         </NavigationContainer>
     );
