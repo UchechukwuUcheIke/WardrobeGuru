@@ -1,4 +1,5 @@
-import { StyleSheet, Button, Image, Text, View } from 'react-native';
+import React from 'react';
+import { StyleSheet, Image, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
 import TextButton from '../Component/TextButton';
 
@@ -9,7 +10,7 @@ export default function HomePage() {
         <View style={styles.container}>
             <View style={styles.headingContainer}>
                 <Text style={styles.heading} >Hello, Johnathan!</Text>
-                <Text style={styles.subheading} >Here's your outfit for the day!</Text>
+                <Text style={styles.subheading}> {`Here's your outfit for the day!`} </Text>
             </View>
             <Image
                 style={styles.image} 
@@ -28,15 +29,15 @@ export default function HomePage() {
                 />
 
                 <TextButton 
-                    title={"Looks good to me!"}
-                    containerStylesheet={styles.buttonContainer}
-                    textStylesheet={styles.buttonText}
+                    text = "Looks good to me!"
+                    containerStylesheet = {styles.buttonContainer}
+                    textStylesheet = {styles.buttonText}
                 />
 
                 <TextButton 
-                    title={"Pick something else"}
-                    containerStylesheet={styles.buttonContainer}
-                    textStylesheet={styles.buttonText}
+                    text = "Pick something else"
+                    containerStylesheet = {styles.buttonContainer}
+                    textStylesheet = {styles.buttonText}
                 />
             </View>
         </View>

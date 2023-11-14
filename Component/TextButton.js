@@ -1,7 +1,10 @@
+/* eslint react/forbid-prop-types: 0 */
+
 import React from "react";
 import { TouchableOpacity, Text } from "react-native";
+import PropTypes from 'prop-types';
 
-function TextButton ({ onPress, title, containerStylesheet, textStylesheet }) {
+function TextButton ({ onPress, text, containerStylesheet, textStylesheet }) {
     const containerStyle = containerStylesheet || {}
     const textStyle = textStylesheet || {}
 
@@ -14,10 +17,18 @@ function TextButton ({ onPress, title, containerStylesheet, textStylesheet }) {
     >
       <Text 
       style={textStyle}>
-        {title}</Text>
+        {text}</Text>
     </TouchableOpacity>
     )
 };
 
+TextButton.propTypes = {
+
+onPress: PropTypes.func.isRequired,
+text: PropTypes.string.isRequired,
+containerStylesheet: PropTypes.node.isRequired,
+textStylesheet: PropTypes.node.isRequired,
+
+};
 
 export default TextButton;

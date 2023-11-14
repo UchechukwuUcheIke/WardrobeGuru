@@ -1,6 +1,9 @@
+/* eslint react/forbid-prop-types: 0 */
+
 import React from "react";
-import { TouchableOpacity, Text } from "react-native";
+import { TouchableOpacity} from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
+import PropTypes from 'prop-types';
 
 function IconButton ({ onPress, name, containerStylesheet, iconSize, iconColor }) {
     const containerStyle = containerStylesheet || {}
@@ -19,6 +22,16 @@ function IconButton ({ onPress, name, containerStylesheet, iconSize, iconColor }
       />
     </TouchableOpacity>
     )
+};
+
+IconButton.propTypes = {
+
+onPress: PropTypes.func.isRequired,
+name: PropTypes.string.isRequired,
+containerStylesheet: PropTypes.node.isRequired,
+iconSize: PropTypes.number.isRequired,
+iconColor: PropTypes.string.isRequired
+
 };
 
 export default IconButton;

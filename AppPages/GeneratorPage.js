@@ -1,5 +1,5 @@
 import React from 'react';
-import { StyleSheet, Image, Text, View, Switch, TouchableOpacity } from 'react-native';
+import { StyleSheet, Image, Text, View, Switch} from 'react-native';
 import Slider from '@react-native-community/slider';
 import IconButton from '../Component/IconButton';
 
@@ -15,7 +15,7 @@ export default function GeneratorPage() {
   const handleFormalityChange = (value) => {
     setFormalityLevel(value);
   };
-  */
+  
 
   const handleCheck = () => {
     // Handle check action
@@ -24,7 +24,8 @@ export default function GeneratorPage() {
   const handleCancel = () => {
     // Handle cancel action
   };
-  
+  */
+
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Outfit Generator</Text>
@@ -62,13 +63,13 @@ export default function GeneratorPage() {
       <View style={styles.optionsContainer}>
 
         <IconButton
-          name = {"close-outline"}
+          name = "close-outline"
           containerStylesheet = {styles.circularButton}
           iconStylesheet
         />
 
         <IconButton
-          name = {"checkmark-outline"}
+          name = "checkmark-outline"
           containerStylesheet = {styles.circularButton}
           iconStylesheet
         />
