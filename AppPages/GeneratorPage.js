@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { StyleSheet, Image, Text, View, Switch, TouchableOpacity } from 'react-native';
 import Slider from '@react-native-community/slider';
+import IconButton from '../Component/IconButton';
 
 export default function GeneratorPage() {
+  /** 
   const [isDiscoveryMode, setDiscoveryMode] = useState(false);
   const [formalityLevel, setFormalityLevel] = useState(0);
 
@@ -13,6 +15,7 @@ export default function GeneratorPage() {
   const handleFormalityChange = (value) => {
     setFormalityLevel(value);
   };
+  */
 
   const handleCheck = () => {
     // Handle check action
@@ -21,7 +24,7 @@ export default function GeneratorPage() {
   const handleCancel = () => {
     // Handle cancel action
   };
-
+  
   return (
     <View style={styles.container}>
       <Text style={styles.heading}>Outfit Generator</Text>
@@ -29,8 +32,8 @@ export default function GeneratorPage() {
       <View style={styles.featureRow}>
         <Text style={styles.label}>Discovery Mode</Text>
         <Switch
-          value={isDiscoveryMode}
-          onValueChange={handleDiscoveryModeToggle}
+          // value={isDiscoveryMode}
+         // onValueChange={handleDiscoveryModeToggle}
           trackColor={{ false: '#767577', true: '#81b0ff' }}
           ios_backgroundColor="#3e3e3e"
         />
@@ -42,9 +45,9 @@ export default function GeneratorPage() {
           style={{ width: '40%', height: 40 }}
           minimumValue={0}
           maximumValue={1}
-          minimumTrackTintColor="#81b0ff"
+          minimumTrackTintColor="#734F96"
           maximumTrackTintColor="#000000"
-          onValueChange={handleFormalityChange}
+          // onValueChange={handleFormalityChange}
         />
         <Text style={styles.label}>Formal</Text>
       </View>
@@ -57,13 +60,18 @@ export default function GeneratorPage() {
       />
 
       <View style={styles.optionsContainer}>
-        <TouchableOpacity style={styles.circularButton} onPress={handleCancel}>
-          <Text style={[styles.buttonText, { color: 'rgba(0, 0, 0, 0.6)' }]}>✘</Text>
-        </TouchableOpacity>
 
-        <TouchableOpacity style={styles.circularButton} onPress={handleCheck}>
-          <Text style={styles.buttonText}>✔</Text>
-        </TouchableOpacity>
+        <IconButton
+          name = {"close-outline"}
+          containerStylesheet = {styles.circularButton}
+          iconStylesheet
+        />
+
+        <IconButton
+          name = {"checkmark-outline"}
+          containerStylesheet = {styles.circularButton}
+          iconStylesheet
+        />
       </View>
     </View>
   );
@@ -71,10 +79,11 @@ export default function GeneratorPage() {
 
 const styles = StyleSheet.create({
   container: {
-    marginTop: 50,
-    marginLeft: 10,
-    marginRight: 10,
+    paddingTop: 5,
+    paddingLeft: 10,
+    paddingRight: 10,
     alignItems: 'center',
+    height: "100%"
   },
   heading: {
     color: 'black',
@@ -103,12 +112,9 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 25,
-    backgroundColor: '#81b0ff',
+    backgroundColor: '#734F96',
     justifyContent: 'center',
     alignItems: 'center',
-  },
-  buttonText: {
-    fontSize: 20,
   },
   label: {
     fontSize: 20,

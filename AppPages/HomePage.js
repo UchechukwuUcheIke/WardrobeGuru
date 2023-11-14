@@ -1,5 +1,6 @@
 import { StyleSheet, Button, Image, Text, View } from 'react-native';
 import Slider from '@react-native-community/slider';
+import TextButton from '../Component/TextButton';
 
 
 export default function HomePage() {
@@ -21,16 +22,21 @@ export default function HomePage() {
                     style={{width: "50%", height: 40}}
                     minimumValue={0}
                     maximumValue={1}
-                    minimumTrackTintColor="#FFFFFF"
+                    minimumTrackTintColor="#734F96"
                     maximumTrackTintColor="#000000"
+                    
                 />
-                <Button style={styles.button}
-                    title="Looks good to me!"
-                    color='#8088E9'
+
+                <TextButton 
+                    title={"Looks good to me!"}
+                    containerStylesheet={styles.buttonContainer}
+                    textStylesheet={styles.buttonText}
                 />
-                <Button style={styles.button}
-                    title="Pick something else"
-                    color='#8088E9'
+
+                <TextButton 
+                    title={"Pick something else"}
+                    containerStylesheet={styles.buttonContainer}
+                    textStylesheet={styles.buttonText}
                 />
             </View>
         </View>
@@ -64,10 +70,13 @@ const styles = StyleSheet.create({
         height: "50%"
     },
     buttonContainer: {
-
-        marginLeft: 10,
-        marginTop: 10,
-        marginRight: 50,
+        backgroundColor: "#734F96",
+        marginTop: 5,
+        paddingTop: 5,
+        paddingLeft: 5, 
+        paddingRight: 5, 
+        paddingBottom: 5, 
+        alignItems:"center"
     },
     optionsContainer: {
         width: "100%",
@@ -75,7 +84,7 @@ const styles = StyleSheet.create({
         alignItems:"center"
     },
     buttonText: {
-        color: 'black',
+        color: 'white',
         fontSize: 20,
         textAlign: 'center',
     }
