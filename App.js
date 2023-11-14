@@ -51,7 +51,7 @@ export default function App() {
                 <Tab.Screen name="Generator" component={GeneratorPage} />
                 <Tab.Screen name="Saved Outfits" component={OutfitPage} />
                 <Tab.Screen name="Home" component={HomePage} />
-                <Tab.Screen name="Wardrobe" component={WardrobePage} />
+                <Tab.Screen name="Wardrobe" component={WardrobePage} options={{headerShown:false,}}/>
                 <Tab.Screen name="Account" component={AccountPage} />
             </Tab.Navigator>
         </NavigationContainer>

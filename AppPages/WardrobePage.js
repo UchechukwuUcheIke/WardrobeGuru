@@ -298,7 +298,7 @@ export default function WardrobePage() {
                 <TouchableOpacity style={styles.selectButton} onPress={PressSB}>
                     <Text style={styles.selectButtonText}>Select</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerText}>Your Wardrobe</Text>
+                <Text style={styles.headerText}>Wardrobe</Text>
                 <TouchableOpacity>
                     <Icon name="add" size={30} color="#000" />
                 </TouchableOpacity>
@@ -313,7 +313,7 @@ export default function WardrobePage() {
                 <TouchableOpacity style={styles.selectButton} onPress={PressSB}>
                     <Text style={styles.selectButtonText}>Cancel</Text>
                 </TouchableOpacity>
-                <Text style={styles.headerText}>Your Wardrobe</Text>
+                <Text style={styles.headerText}>Wardrobe</Text>
                 <TouchableOpacity onPress={deleteImg}>
                     <Icon name="delete" size={30} color="#000" />
                 </TouchableOpacity>
@@ -337,6 +337,9 @@ const styles = StyleSheet.create({
         justifyContent: 'space-between',
         alignItems: 'center',
         padding: 10,
+        backgroundColor: '#FFFFFF',
+        paddingTop: 55,
+        paddingBottom: 0
     },
     selectButton: {
         // Define styles for the select button
@@ -345,8 +348,8 @@ const styles = StyleSheet.create({
         // Define styles for the select button text
     },
     headerText: {
-        fontSize: 20,
-        fontWeight: 'bold',
+        fontSize: 16,
+        fontWeight: '600',
     },
     tabContainer: {
         flexDirection: 'row',
