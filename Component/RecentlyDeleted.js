@@ -20,6 +20,9 @@ import Data from "../assets/data/recently_deleted.json";
 
 const Tab = createMaterialTopTabNavigator();
 
+// TODO: set this dynamically based on screen width
+const NUM_COLUMNS = 2;
+
 export default function RecentlyDeletedPage() {
     const [Select, setSelect] = useState(false);
     const [Clothes, setClothes] = useState(Data.Clothes);
@@ -66,15 +69,22 @@ export default function RecentlyDeletedPage() {
         ).isRequired,
     };
 
+    function EmptyList(items) {
+        return (
+            <Text style={styles.empty}>No recently deleted {items} found.</Text>
+        );
+    }
+
     function ClothesTab() {
         return (
-            <View style={styles.container}>
+            <View style={styles.tabContainer}>
                 <FlatList
                     data={Clothes}
                     keyExtractor={(item) => item.id}
                     horizontal={false}
-                    numColumns={2}
+                    numColumns={NUM_COLUMNS}
                     renderItem={RenderItem}
+                    ListEmptyComponent={EmptyList("clothes")}
                 />
             </View>
         );
@@ -82,13 +92,14 @@ export default function RecentlyDeletedPage() {
 
     function OutfitsTab() {
         return (
-            <View style={styles.container}>
+            <View style={styles.tabContainer}>
                 <FlatList
                     data={Outfits}
                     keyExtractor={(item) => item.id}
                     horizontal={false}
-                    numColumns={2}
+                    numColumns={NUM_COLUMNS}
                     renderItem={RenderItem}
+                    ListEmptyComponent={EmptyList("outfits")}
                 />
             </View>
         );
@@ -147,16 +158,12 @@ export default function RecentlyDeletedPage() {
             navigation.setOptions({
                 headerLeft: () => (
                     <TouchableOpacity style={styles.tab} onPress={DeleteItems}>
-                        <Icon
-                            name="restore-from-trash"
-                            size={30}
-                            color="#000"
-                        />
+                        <Icon name="restore" size={30} color="#000" />
                     </TouchableOpacity>
                 ),
                 headerRight: () => (
                     <TouchableOpacity style={styles.tab} onPress={ToggleSelect}>
-                        <Text style={styles.selectButtonText}>Cancel</Text>
+                        <Text>Cancel</Text>
                     </TouchableOpacity>
                 ),
             });
@@ -167,7 +174,7 @@ export default function RecentlyDeletedPage() {
                 ),
                 headerRight: () => (
                     <TouchableOpacity style={styles.tab} onPress={ToggleSelect}>
-                        <Text style={styles.selectButtonText}>Select</Text>
+                        <Text>Select</Text>
                     </TouchableOpacity>
                 ),
             });
@@ -188,42 +195,21 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
     },
-    header: {
-        flexDirection: "row",
-        justifyContent: "space-between",
-        alignItems: "center",
-        padding: 10,
-        backgroundColor: "#FFFFFF",
-        paddingTop: 55,
-        paddingBottom: 0,
-    },
-    headerText: {
-        fontSize: 16,
-        fontWeight: "600",
-    },
     tabContainer: {
-        flexDirection: "row",
-        justifyContent: "space-around",
-        backgroundColor: "#e1e1e1",
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
     },
     tab: {
         padding: 10,
-    },
-    grid: {
-        // Define styles for grid layout
-    },
-    scrollContainer: {
-        flex: 1,
-    },
-    imageGrid: {
-        flexDirection: "row",
-        flexWrap: "wrap",
-        justifyContent: "space-around",
-        alignItems: "center",
     },
     image: {
         width: 140,
         height: 140,
         margin: "2.5%",
+    },
+    empty: {
+        padding: 50,
+        fontSize: 16,
     },
 });
