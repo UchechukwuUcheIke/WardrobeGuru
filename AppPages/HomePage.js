@@ -1,7 +1,8 @@
-import { React } from "react";
-import { StyleSheet, Button, Image, Text, View } from "react-native";
+import React from "react";
+import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
-// import AppButton from "../Component/Button";
+import TextButton from "../Component/TextButton";
+import OutfitDisplay from "../Component/OutfitDisplay";
 
 export default function HomePage() {
     return (
@@ -9,32 +10,38 @@ export default function HomePage() {
             <View style={styles.headingContainer}>
                 <Text style={styles.heading}>Hello, Johnathan!</Text>
                 <Text style={styles.subheading}>
-                    Here&apos;s your outfit for the day!
+                    {" "}
+                    {`Here's your outfit for the day!`}{" "}
                 </Text>
             </View>
-            <Image
-                style={styles.image}
-                source={{
-                    uri: "https://i.pinimg.com/236x/4c/c9/0d/4cc90df3818e8a7a3cc4ab89672f1615.jpg",
-                }}
+
+            <OutfitDisplay
+                style={styles.OutfitDisplay}
+                hatImgSrc="https://www.agnoulitahats.com/cdn/shop/files/DSC_0006.webp?crop=center&height=1875&v=1689711052&width=2500"
+                shirtImgSrc="https://cdn11.bigcommerce.com/s-za5m5kya2c/images/stencil/1280x1280/products/263/644/Oppenheimer_Mock_Up_Edited__64095.1691524917.png?c=1"
+                pantsImgSrc="https://static.vecteezy.com/system/resources/previews/021/809/260/original/yellow-pants-isolated-on-a-transparent-background-png.png"
+                shoesImgSrc="https://cdn.imgbin.com/13/0/11/imgbin-dress-shoe-bata-shoes-oxford-shoe-hush-puppies-sandals-86zmS8Vd1d7BKFmqv15irniAM.jpg"
             />
+
             <View style={styles.optionsContainer}>
                 <Slider
                     style={{ width: "50%", height: 40 }}
                     minimumValue={0}
                     maximumValue={1}
-                    minimumTrackTintColor="#FFFFFF"
+                    minimumTrackTintColor="#734F96"
                     maximumTrackTintColor="#000000"
                 />
-                <Button
-                    style={styles.button}
-                    title="Looks good to me!"
-                    color="#8088E9"
+
+                <TextButton
+                    text="Looks good to me!"
+                    containerStylesheet={styles.buttonContainer}
+                    textStylesheet={styles.buttonText}
                 />
-                <Button
-                    style={styles.button}
-                    title="Pick something else"
-                    color="#8088E9"
+
+                <TextButton
+                    text="Pick something else"
+                    containerStylesheet={styles.buttonContainer}
+                    textStylesheet={styles.buttonText}
                 />
             </View>
         </View>
@@ -63,14 +70,18 @@ const styles = StyleSheet.create({
         fontSize: 20,
         textAlign: "center",
     },
-    image: {
-        width: "100%",
+    OutfitDisplay: {
+        width: "50%",
         height: "50%",
     },
     buttonContainer: {
-        marginLeft: 10,
-        marginTop: 10,
-        marginRight: 50,
+        backgroundColor: "#734F96",
+        marginTop: 5,
+        paddingTop: 5,
+        paddingLeft: 5,
+        paddingRight: 5,
+        paddingBottom: 5,
+        alignItems: "center",
     },
     optionsContainer: {
         width: "100%",
@@ -78,7 +89,7 @@ const styles = StyleSheet.create({
         alignItems: "center",
     },
     buttonText: {
-        color: "black",
+        color: "white",
         fontSize: 20,
         textAlign: "center",
     },
