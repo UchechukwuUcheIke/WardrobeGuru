@@ -1,29 +1,19 @@
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
+import { useNavigation } from "@react-navigation/native";
+import { createStackNavigator } from "@react-navigation/stack";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
+import RecentlyDeleted from "../Component/RecentlyDeleted";
 
 const TILE_SIZE = 120;
 const SPACING = 8;
 
-function Tile({ iconName, label, onPress }) {
-    return (
-        <TouchableOpacity style={styles.tile} onPress={onPress}>
-            <Ionicons name={iconName} size={40} color="#8088E9" />
-            <Text style={styles.label} numberOfLines={2} ellipsizeMode="tail">
-                {label}
-            </Text>
-        </TouchableOpacity>
-    );
-}
+// TODO: Add other pages as screens
+function MenuScreen() {
+    const navigation = useNavigation();
 
-Tile.propTypes = {
-    iconName: PropTypes.string.isRequired,
-    label: PropTypes.string.isRequired,
-    onPress: PropTypes.func.isRequired,
-};
-
-export default function AccountPage() {
     return (
         <View style={styles.container}>
             <View style={styles.row}>
@@ -42,7 +32,7 @@ export default function AccountPage() {
                 <Tile
                     iconName="trash"
                     label="Recently Deleted"
-                    onPress={() => console.log("Recently Deleted pressed")}
+                    onPress={() => navigation.navigate("Recently Deleted")}
                 />
                 <Tile
                     iconName="help-circle"
@@ -51,6 +41,44 @@ export default function AccountPage() {
                 />
             </View>
         </View>
+    );
+}
+
+function Tile({ iconName, label, onPress }) {
+    return (
+        <TouchableOpacity style={styles.tile} onPress={onPress}>
+            <Ionicons name={iconName} size={40} color="#8088E9" />
+            <Text style={styles.label} numberOfLines={2} ellipsizeMode="tail">
+                {label}
+            </Text>
+        </TouchableOpacity>
+    );
+}
+
+Tile.propTypes = {
+    iconName: PropTypes.string.isRequired,
+    label: PropTypes.string.isRequired,
+    onPress: PropTypes.func.isRequired,
+};
+
+// TODO: Add other pages as screens
+export default function AccountPage() {
+    const Stack = createStackNavigator();
+
+    return (
+        <Stack.Navigator
+            initialRouteName="Menu"
+            screenOptions={() => ({
+                headerTitleAlign: "center",
+            })}
+        >
+            <Stack.Screen
+                name="Menu"
+                component={MenuScreen}
+                options={{ headerShown: false }}
+            />
+            <Stack.Screen name="Recently Deleted" component={RecentlyDeleted} />
+        </Stack.Navigator>
     );
 }
 

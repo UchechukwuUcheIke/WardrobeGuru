@@ -22,6 +22,7 @@ export default function App() {
     return (
         <NavigationContainer>
             <Tab.Navigator
+                initialRouteName="Home"
                 screenOptions={({ route }) => ({
                     headerStyle: {
                         backgroundColor: "#8088E9",
