@@ -1,6 +1,7 @@
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
     View,
     Text,
@@ -55,6 +56,15 @@ export default function RecentlyDeletedPage() {
             </View>
         );
     }
+
+    RenderItem.propTypes = {
+        item: PropTypes.arrayOf(
+            PropTypes.shape({
+                url: PropTypes.string.isRequired,
+                selected: PropTypes.bool.isRequired,
+            })
+        ).isRequired,
+    };
 
     function ClothesTab() {
         return (

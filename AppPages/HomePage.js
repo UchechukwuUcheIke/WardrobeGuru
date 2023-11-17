@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
 import TextButton from "../Component/TextButton";
-import OutfitDisplay from "../Component/OutfitDisplay";
+// import OutfitDisplay from "../Component/OutfitDisplay";
 
 export default function HomePage() {
     return (
@@ -15,13 +15,13 @@ export default function HomePage() {
                 </Text>
             </View>
 
-            <OutfitDisplay
+            {/* <OutfitDisplay
                 style={styles.OutfitDisplay}
                 hatImgSrc="https://www.agnoulitahats.com/cdn/shop/files/DSC_0006.webp?crop=center&height=1875&v=1689711052&width=2500"
                 shirtImgSrc="https://cdn11.bigcommerce.com/s-za5m5kya2c/images/stencil/1280x1280/products/263/644/Oppenheimer_Mock_Up_Edited__64095.1691524917.png?c=1"
                 pantsImgSrc="https://static.vecteezy.com/system/resources/previews/021/809/260/original/yellow-pants-isolated-on-a-transparent-background-png.png"
                 shoesImgSrc="https://cdn.imgbin.com/13/0/11/imgbin-dress-shoe-bata-shoes-oxford-shoe-hush-puppies-sandals-86zmS8Vd1d7BKFmqv15irniAM.jpg"
-            />
+            /> */}
 
             <View style={styles.optionsContainer}>
                 <Slider
@@ -32,17 +32,9 @@ export default function HomePage() {
                     maximumTrackTintColor="#000000"
                 />
 
-                <TextButton
-                    text="Looks good to me!"
-                    containerStylesheet={styles.buttonContainer}
-                    textStylesheet={styles.buttonText}
-                />
+                <TextButton text="Looks good to me!" />
 
-                <TextButton
-                    text="Pick something else"
-                    containerStylesheet={styles.buttonContainer}
-                    textStylesheet={styles.buttonText}
-                />
+                <TextButton text="Pick something else" />
             </View>
         </View>
     );
@@ -74,23 +66,9 @@ const styles = StyleSheet.create({
         width: "50%",
         height: "50%",
     },
-    buttonContainer: {
-        backgroundColor: "#734F96",
-        marginTop: 5,
-        paddingTop: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom: 5,
-        alignItems: "center",
-    },
     optionsContainer: {
         width: "100%",
         height: "30%",
         alignItems: "center",
-    },
-    buttonText: {
-        color: "white",
-        fontSize: 20,
-        textAlign: "center",
     },
 });
