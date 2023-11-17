@@ -32,17 +32,9 @@ export default function HomePage() {
                     maximumTrackTintColor="#000000"
                 />
 
-                <TextButton
-                    text="Looks good to me!"
-                    containerStylesheet={styles.buttonContainer}
-                    textStylesheet={styles.buttonText}
-                />
+                <TextButton text="Looks good to me!" />
 
-                <TextButton
-                    text="Pick something else"
-                    containerStylesheet={styles.buttonContainer}
-                    textStylesheet={styles.buttonText}
-                />
+                <TextButton text="Pick something else" />
             </View>
         </View>
     );
@@ -74,23 +66,9 @@ const styles = StyleSheet.create({
         width: "50%",
         height: "50%",
     },
-    buttonContainer: {
-        backgroundColor: "#734F96",
-        marginTop: 5,
-        paddingTop: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom: 5,
-        alignItems: "center",
-    },
     optionsContainer: {
         width: "100%",
         height: "30%",
         alignItems: "center",
-    },
-    buttonText: {
-        color: "white",
-        fontSize: 20,
-        textAlign: "center",
     },
 });

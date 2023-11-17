@@ -1,25 +1,18 @@
 /* eslint react/forbid-prop-types: 0 */
 
 import React from "react";
-import { TouchableOpacity, ViewPropTypes } from "react-native";
+import { TouchableOpacity, StyleSheet } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import PropTypes from "prop-types";
 
-function IconButton({
-    onPress,
-    name,
-    containerStylesheet,
-    iconSize,
-    iconColor,
-}) {
-    const containerStyle = containerStylesheet || {};
+function IconButton({ onPress, name, iconSize, iconColor }) {
     const size = iconSize; // Size of icon
     const color = iconColor; // Color of icon
     return (
         <TouchableOpacity
             activeOpacity={0.8}
             onPress={onPress}
-            style={containerStyle}
+            style={styles.circularButton}
         >
             <Ionicons name={name} size={size} color={color} />
         </TouchableOpacity>
@@ -29,7 +22,6 @@ function IconButton({
 IconButton.propTypes = {
     onPress: PropTypes.func,
     name: PropTypes.string.isRequired,
-    containerStylesheet: ViewPropTypes.style.isRequired,
     iconSize: PropTypes.number,
     iconColor: PropTypes.string,
 };
@@ -41,3 +33,14 @@ IconButton.defaultProps = {
 };
 
 export default IconButton;
+
+const styles = StyleSheet.create({
+    circularButton: {
+        width: 50,
+        height: 50,
+        borderRadius: 25,
+        backgroundColor: "#734F96",
+        justifyContent: "center",
+        alignItems: "center",
+    },
+});

@@ -57,15 +57,9 @@ export default function GeneratorPage() {
             {/* <OutfitDisplay style={styles.OutfitDisplay} /> */}
 
             <View style={styles.optionsContainer}>
-                <IconButton
-                    name="close-outline"
-                    containerStylesheet={styles.circularButton}
-                />
+                <IconButton name="close-outline" />
 
-                <IconButton
-                    name="checkmark-outline"
-                    containerStylesheet={styles.circularButton}
-                />
+                <IconButton name="checkmark-outline" />
             </View>
         </View>
     );
@@ -101,14 +95,6 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         width: "60%",
         marginTop: 20,
-    },
-    circularButton: {
-        width: 50,
-        height: 50,
-        borderRadius: 25,
-        backgroundColor: "#734F96",
-        justifyContent: "center",
-        alignItems: "center",
     },
     label: {
         fontSize: 20,
