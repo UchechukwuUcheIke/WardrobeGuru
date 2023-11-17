@@ -30,17 +30,17 @@ export default TextButton;
 
 const styles = StyleSheet.create({
     buttonContainer: {
-        backgroundColor: "#734F96",
+        backgroundColor: "#8088E9",
         marginTop: 5,
-        paddingTop: 5,
-        paddingLeft: 5,
-        paddingRight: 5,
-        paddingBottom: 5,
+        padding: 8,
+        borderRadius: 6,
+        justifyContent: "center",
         alignItems: "center",
     },
     buttonText: {
         color: "white",
-        fontSize: 20,
+        fontSize: 18,
         textAlign: "center",
+        textAlignVertical: "center",
     },
 });

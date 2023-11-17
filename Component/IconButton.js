@@ -29,7 +29,7 @@ IconButton.propTypes = {
 IconButton.defaultProps = {
     onPress: () => {},
     iconSize: 20,
-    iconColor: "black",
+    iconColor: "white",
 };
 
 export default IconButton;
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
         width: 50,
         height: 50,
         borderRadius: 25,
-        backgroundColor: "#734F96",
+        backgroundColor: "#8088E9",
         justifyContent: "center",
         alignItems: "center",
     },
