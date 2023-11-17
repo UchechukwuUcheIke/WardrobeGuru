@@ -65,13 +65,11 @@ export default function GeneratorPage() {
         <IconButton
           name = "close-outline"
           containerStylesheet = {styles.circularButton}
-          iconStylesheet
         />
 
         <IconButton
           name = "checkmark-outline"
           containerStylesheet = {styles.circularButton}
-          iconStylesheet
         />
       </View>
     </View>

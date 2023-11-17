@@ -24,11 +24,16 @@ function TextButton ({ onPress, text, containerStylesheet, textStylesheet }) {
 
 TextButton.propTypes = {
 
-onPress: PropTypes.func.isRequired,
+onPress: PropTypes.func,
 text: PropTypes.string.isRequired,
 containerStylesheet: PropTypes.node.isRequired,
-textStylesheet: PropTypes.node.isRequired,
+textStylesheet: PropTypes.node
 
 };
+
+TextButton.defaultProps = {
+  onPress: () => {},
+  textStylesheet: {}
+}
 
 export default TextButton;
