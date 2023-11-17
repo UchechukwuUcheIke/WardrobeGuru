@@ -1,7 +1,9 @@
 import React from 'react';
-import { StyleSheet, Image, Text, View, Switch} from 'react-native';
+import { StyleSheet, Text, View, Switch} from 'react-native';
 import Slider from '@react-native-community/slider';
 import IconButton from '../Component/IconButton';
+import OutfitDisplay from '../Component/OutfitDisplay';
+
 
 export default function GeneratorPage() {
   /** 
@@ -53,12 +55,7 @@ export default function GeneratorPage() {
         <Text style={styles.label}>Formal</Text>
       </View>
 
-      <Image
-        style={styles.image}
-        source={{
-          uri: 'https://i.pinimg.com/236x/4c/c9/0d/4cc90df3818e8a7a3cc4ab89672f1615.jpg',
-        }}
-      />
+      <OutfitDisplay style={styles.OutfitDisplay}/>
 
       <View style={styles.optionsContainer}>
 
@@ -96,7 +93,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     marginBottom: 5,
   },
-  image: {
+  OutfitDisplay: {
     width: '100%',
     height: '60%',
     marginTop: 10,

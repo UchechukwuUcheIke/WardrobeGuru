@@ -1,7 +1,7 @@
 /* eslint react/forbid-prop-types: 0 */
 
 import React from "react";
-import { TouchableOpacity} from "react-native";
+import { TouchableOpacity, ViewPropTypes } from "react-native";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import PropTypes from 'prop-types';
 
@@ -28,7 +28,7 @@ IconButton.propTypes = {
 
 onPress: PropTypes.func,
 name: PropTypes.string.isRequired,
-containerStylesheet: PropTypes.node.isRequired,
+containerStylesheet: ViewPropTypes.style.isRequired,
 iconSize: PropTypes.number,
 iconColor: PropTypes.string,
 
