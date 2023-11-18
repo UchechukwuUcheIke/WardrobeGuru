@@ -12,13 +12,20 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import Data from "../assets/data/saved_outfits.json";
+import { HeaderBackButton } from "@react-navigation/elements";
+
+import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+
+import Data from "../assets/data/recently_deleted.json";
+
+const Tab = createMaterialTopTabNavigator();
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function OutfitPage() {
+export default function RecentlyDeletedPage() {
     const [Select, setSelect] = useState(false);
+    const [Clothes, setClothes] = useState(Data.Clothes);
     const [Outfits, setOutfits] = useState(Data.Outfits);
     const navigation = useNavigation();
 
@@ -62,12 +69,24 @@ export default function OutfitPage() {
         ).isRequired,
     };
 
-    function EmptyList() {
+    function EmptyList(items) {
         return (
-            <Text style={styles.empty}>
-                It seems you haven&apos;t saved any outfits yet! To get started,
-                press the + icon above.
-            </Text>
+            <Text style={styles.empty}>No recently deleted {items} found.</Text>
+        );
+    }
+
+    function ClothesTab() {
+        return (
+            <View style={styles.tabContainer}>
+                <FlatList
+                    data={Clothes}
+                    keyExtractor={(item) => item.id}
+                    horizontal={false}
+                    numColumns={NUM_COLUMNS}
+                    renderItem={RenderItem}
+                    ListEmptyComponent={EmptyList("clothes")}
+                />
+            </View>
         );
     }
 
@@ -80,14 +99,22 @@ export default function OutfitPage() {
                     horizontal={false}
                     numColumns={NUM_COLUMNS}
                     renderItem={RenderItem}
-                    ListEmptyComponent={EmptyList}
+                    ListEmptyComponent={EmptyList("outfits")}
                 />
             </View>
         );
     }
 
+    // TODO: only run the function relevant to the current tab
     const ToggleSelect = () => {
         if (Select) {
+            const newClothes = Clothes.map((item) => {
+                if (item.selected) {
+                    return { ...item, selected: !item.selected };
+                }
+                return item;
+            });
+            setClothes(newClothes);
             const newOutfits = Outfits.map((item) => {
                 if (item.selected) {
                     return { ...item, selected: !item.selected };
@@ -99,7 +126,15 @@ export default function OutfitPage() {
         setSelect(!Select);
     };
 
+    // TODO: only run the function relevant to the current tab
     const SelectItem = (target) => {
+        const newClothes = Clothes.map((item) => {
+            if (item.id === target.id) {
+                return { ...item, selected: !item.selected };
+            }
+            return item;
+        });
+        setClothes(newClothes);
         const newOutfits = Outfits.map((item) => {
             if (item.id === target.id) {
                 return { ...item, selected: !item.selected };
@@ -109,14 +144,13 @@ export default function OutfitPage() {
         setOutfits(newOutfits);
     };
 
+    // TODO: only run the function relevant to the current tab
     const DeleteItems = () => {
+        const newClothes = Clothes.filter((item) => !item.selected);
+        setClothes(newClothes);
         const newOutfits = Outfits.filter((item) => !item.selected);
         setOutfits(newOutfits);
         setSelect(false);
-    };
-
-    const AddItems = () => {
-        navigation.navigate("Generator");
     };
 
     useEffect(() => {
@@ -124,32 +158,37 @@ export default function OutfitPage() {
             navigation.setOptions({
                 headerLeft: () => (
                     <TouchableOpacity style={styles.tab} onPress={DeleteItems}>
-                        <Icon name="delete" size={30} color="#fff" />
+                        <Icon name="restore" size={30} color="#000" />
                     </TouchableOpacity>
                 ),
                 headerRight: () => (
                     <TouchableOpacity style={styles.tab} onPress={ToggleSelect}>
-                        <Text style={styles.selectText}>Cancel</Text>
+                        <Text>Cancel</Text>
                     </TouchableOpacity>
                 ),
             });
         } else {
             navigation.setOptions({
                 headerLeft: () => (
-                    <TouchableOpacity style={styles.tab} onPress={AddItems}>
-                        <Icon name="add-circle" size={30} color="#fff" />
-                    </TouchableOpacity>
+                    <HeaderBackButton onPress={() => navigation.goBack()} />
                 ),
                 headerRight: () => (
                     <TouchableOpacity style={styles.tab} onPress={ToggleSelect}>
-                        <Text style={styles.selectText}>Select</Text>
+                        <Text>Select</Text>
                     </TouchableOpacity>
                 ),
             });
         }
     });
 
-    return <View style={styles.container}>{OutfitsTab()}</View>;
+    return (
+        <View style={styles.container}>
+            <Tab.Navigator>
+                <Tab.Screen name="Clothes" component={ClothesTab} />
+                <Tab.Screen name="Outfits" component={OutfitsTab} />
+            </Tab.Navigator>
+        </View>
+    );
 }
 
 const styles = StyleSheet.create({
@@ -172,8 +211,5 @@ const styles = StyleSheet.create({
     empty: {
         padding: 50,
         fontSize: 16,
-    },
-    selectText: {
-        color: "white",
     },
 });
