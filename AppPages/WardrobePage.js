@@ -1,6 +1,6 @@
 import React from "react";
-import EmptyWardrobe from "../Component/EmptyWardrobe";
+import { Text } from "react-native";
 
 export default function WardrobePage() {
-    return <EmptyWardrobe/>
+    return <Text>Wardrobe Page</Text>;
 }
