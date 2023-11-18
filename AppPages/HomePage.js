@@ -42,11 +42,12 @@ export default function HomePage() {
 
 const styles = StyleSheet.create({
     container: {
-        marginTop: 50,
+        marginTop: 5,
         marginLeft: 10,
         marginRight: 10,
 
         alignItems: "center",
+        height: "100%",
     },
     headingContainer: {
         width: "100%",

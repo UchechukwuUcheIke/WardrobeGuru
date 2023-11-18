@@ -1,16 +1,15 @@
 import React from "react";
-import { StyleSheet, Image, View, ViewStyle } from "react-native";
+import { StyleSheet, Image, View} from "react-native";
 import PropTypes from "prop-types";
 
 export default function OutfitDisplay({
-    style,
     hatImgSrc,
     shirtImgSrc,
     pantsImgSrc,
     shoesImgSrc,
 }) {
     return (
-        <View style={style}>
+        <View style={styles.displayStyle}>
             <Image
                 style={styles.image}
                 source={{
@@ -40,6 +39,11 @@ export default function OutfitDisplay({
 }
 
 const styles = StyleSheet.create({
+    displayStyle: {
+        width: "50%",
+        height: "50%",
+        marginBottom: "1%",
+    },
     image: {
         width: "100%",
         height: "20%",
@@ -48,7 +52,6 @@ const styles = StyleSheet.create({
 });
 
 OutfitDisplay.propTypes = {
-    style: ViewStyle,
     hatImgSrc: PropTypes.string,
     shirtImgSrc: PropTypes.string,
     pantsImgSrc: PropTypes.string,
@@ -56,7 +59,6 @@ OutfitDisplay.propTypes = {
 };
 
 OutfitDisplay.defaultProps = {
-    style: {},
     hatImgSrc: " ",
     shirtImgSrc: " ",
     pantsImgSrc: " ",

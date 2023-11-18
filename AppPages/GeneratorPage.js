@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Switch } from "react-native";
 import Slider from "@react-native-community/slider";
 import IconButton from "../Component/IconButton";
-import OutfitDisplay from '../Component/OutfitDisplay';
+import OutfitDisplay from "../Component/OutfitDisplay";
 
 export default function GeneratorPage() {
     /** 
