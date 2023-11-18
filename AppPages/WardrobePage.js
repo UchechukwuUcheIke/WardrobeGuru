@@ -10,13 +10,13 @@ import {
     Image,
     FlatList,
     Modal,
-    Button,
     ActivityIndicator,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import ClothingItemModal from "./ClothingItemPage";
+import TextButton from "../Component/TextButton";
+import ClothingItemModal from "../Component/ClothingItemModal";
 
 import Data from "../assets/data/wardrobe.json";
 
@@ -32,7 +32,7 @@ export default function WardrobePage() {
     const [Accessories, setAccessories] = useState(Data.Accessories);
     const [Shoes, setShoes] = useState(Data.Shoes);
 
-    const [adding, setAdding] = useState(false);
+    const [Adding, setAdding] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [currentItem, setCurrentItem] = useState({}); // The item currently being edited
@@ -286,6 +286,7 @@ export default function WardrobePage() {
 
         setTimeout(() => {
             // Step 3: Add the new item to the state
+            hideModal();
             setAdding(false);
             setCurrentItem(newItem); // Set the new item as the current item
             setIsEditModalVisible(true); // Show the edit modal
@@ -293,7 +294,6 @@ export default function WardrobePage() {
     }
 
     function handlePhotoOptionSelection() {
-        hideModal();
         // Simulate a delay for photo selection or capture
         setTimeout(() => {
             AddNewItem();
@@ -314,31 +314,31 @@ export default function WardrobePage() {
                 visible={isModalVisible}
                 onRequestClose={hideModal}
             >
-                <View style={styles.modalView}>
-                    <Button
-                        title="Take Photo"
-                        onPress={() => handlePhotoOptionSelection("take")}
-                    />
-                    <Button
-                        title="Upload Photo"
-                        onPress={() => handlePhotoOptionSelection("upload")}
-                    />
-                    <Button title="Cancel" onPress={hideModal} />
-                </View>
+                {Adding ? (
+                    // Show loading indicator when adding a new item
+                    <View style={styles.modalView}>
+                        <ActivityIndicator size="large" color="#0000ff" />
+                    </View>
+                ) : (
+                    <View style={styles.modalView}>
+                        <TextButton
+                            text="Take Photo"
+                            onPress={() => handlePhotoOptionSelection("take")}
+                        />
+                        <TextButton
+                            text="Upload Photo"
+                            onPress={() => handlePhotoOptionSelection("upload")}
+                        />
+                        <TextButton text="Cancel" onPress={() => hideModal()} />
+                    </View>
+                )}
             </Modal>
-            {adding ? (
-                // Show loading indicator when adding a new item
-                <View style={{ ...styles.header, justifyContent: "center" }}>
-                    <ActivityIndicator size="large" color="#0000ff" />
-                </View>
-            ) : (
-                <Tab.Navigator>
-                    <Tab.Screen name="Tops" component={TopsTab} />
-                    <Tab.Screen name="Bottoms" component={BottomsTab} />
-                    <Tab.Screen name="Accessories" component={AccessoriesTab} />
-                    <Tab.Screen name="Shoes" component={ShoesTab} />
-                </Tab.Navigator>
-            )}
+            <Tab.Navigator>
+                <Tab.Screen name="Tops" component={TopsTab} />
+                <Tab.Screen name="Bottoms" component={BottomsTab} />
+                <Tab.Screen name="Accessories" component={AccessoriesTab} />
+                <Tab.Screen name="Shoes" component={ShoesTab} />
+            </Tab.Navigator>
             <ClothingItemModal
                 visible={isEditModalVisible}
                 onClose={() => setIsEditModalVisible(false)}

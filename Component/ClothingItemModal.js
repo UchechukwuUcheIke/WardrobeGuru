@@ -1,15 +1,9 @@
 import React, { useEffect, useState } from "react";
-import {
-    Modal,
-    View,
-    Text,
-    TextInput,
-    Button,
-    StyleSheet,
-    Image,
-} from "react-native";
+import PropTypes from "prop-types";
+import { Modal, View, Text, TextInput, StyleSheet, Image } from "react-native";
+import TextButton from "./TextButton";
 
-const ClothingItemModal = ({ visible, onClose, onSave, item }) => {
+function ClothingItemModal({ visible, onClose, onSave, item }) {
     //   const [nickname, setNickname] = useState(item.nickname || '');
     //   const [category, setCategory] = useState(item.category || '');
     //   const [formality, setFormality] = useState(item.formality || '');
@@ -46,7 +40,7 @@ const ClothingItemModal = ({ visible, onClose, onSave, item }) => {
     return (
         <Modal
             animationType="slide"
-            transparent={true}
+            transparent
             visible={visible}
             onRequestClose={onClose}
         >
@@ -83,11 +77,24 @@ const ClothingItemModal = ({ visible, onClose, onSave, item }) => {
                     onChangeText={setWarmth}
                     value={warmth}
                 />
-                <Button title="Save" onPress={handleSave} />
-                <Button title="Cancel" onPress={onClose} />
+                <TextButton text="Save" onPress={handleSave} />
+                <TextButton text="Cancel" onPress={onClose} />
             </View>
         </Modal>
     );
+}
+
+// TODO: make these match the proptypes expected in the json file (or update the json file format)
+ClothingItemModal.propTypes = {
+    visible: PropTypes.bool.isRequired,
+    onClose: PropTypes.func.isRequired,
+    onSave: PropTypes.func.isRequired,
+    item: PropTypes.arrayOf(
+        PropTypes.shape({
+            url: PropTypes.string.isRequired,
+            selected: PropTypes.bool.isRequired,
+        })
+    ).isRequired,
 };
 
 const styles = StyleSheet.create({
