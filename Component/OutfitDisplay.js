@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, View, ViewPropTypes } from 'react-native';
+import { StyleSheet, Image, View, ViewStyle } from 'react-native';
 import PropTypes from 'prop-types';
 
 export default function OutfitDisplay({ style, hatImgSrc, shirtImgSrc, pantsImgSrc, shoesImgSrc }) {
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
 
 OutfitDisplay.propTypes = {
 
-style: ViewPropTypes.style,
+style: ViewStyle,
 hatImgSrc: PropTypes.string,
 shirtImgSrc: PropTypes.string,
 pantsImgSrc: PropTypes.string,
