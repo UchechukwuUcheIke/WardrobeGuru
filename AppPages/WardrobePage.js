@@ -9,10 +9,15 @@ import {
     TouchableOpacity,
     Image,
     FlatList,
+    Modal,
+    ActivityIndicator,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
+import TextButton from "../Component/TextButton";
+import ClothingItemModal from "../Component/ClothingItemModal";
+
 import Data from "../assets/data/wardrobe.json";
 
 const Tab = createMaterialTopTabNavigator();
@@ -26,6 +31,12 @@ export default function WardrobePage() {
     const [Bottoms, setBottoms] = useState(Data.Bottoms);
     const [Accessories, setAccessories] = useState(Data.Accessories);
     const [Shoes, setShoes] = useState(Data.Shoes);
+
+    const [Adding, setAdding] = useState(false);
+    const [isModalVisible, setIsModalVisible] = useState(false);
+    const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+    const [currentItem, setCurrentItem] = useState({}); // The item currently being edited
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
@@ -214,8 +225,16 @@ export default function WardrobePage() {
         setSelect(false);
     };
 
+    function showModal() {
+        setIsModalVisible(true);
+    }
+
+    function hideModal() {
+        setIsModalVisible(false);
+    }
+
     const AddItems = () => {
-        console.log("Add clothes pressed");
+        showModal();
     };
 
     useEffect(() => {
@@ -248,14 +267,84 @@ export default function WardrobePage() {
         }
     });
 
+    function AddNewItem() {
+        // Step 1: Simulate selecting a photo
+        const newItem = {
+            id: Date.now().toString(), // Unique ID for the new item
+            url: "https://store.nytimes.com/cdn/shop/products/TruthHoodie-WhiteFront_1024x1024.jpg?v=1571439084",
+            category: "tops",
+            selected: false,
+            nickname: "New Hoodie",
+            formality: "casual",
+            warmth: "warm",
+            timesWorn: 0,
+            dateAdded: new Date().toLocaleDateString(),
+        };
+
+        // Step 2: Show loading icon
+        setAdding(true);
+
+        setTimeout(() => {
+            // Step 3: Add the new item to the state
+            hideModal();
+            setAdding(false);
+            setCurrentItem(newItem); // Set the new item as the current item
+            setIsEditModalVisible(true); // Show the edit modal
+        }, 2000); // Simulate loading for 2 seconds
+    }
+
+    function handlePhotoOptionSelection() {
+        // Simulate a delay for photo selection or capture
+        setTimeout(() => {
+            AddNewItem();
+        }, 1000);
+    }
+
+    // Define a function to handle saving the edited item
+    const handleSaveItem = (editedItem) => {
+        setTops((prevItems) => [editedItem, ...prevItems]);
+        setIsEditModalVisible(false); // Hide the edit modal
+    };
+
     return (
         <View style={styles.container}>
+            <Modal
+                animationType="slide"
+                transparent
+                visible={isModalVisible}
+                onRequestClose={hideModal}
+            >
+                {Adding ? (
+                    // Show loading indicator when adding a new item
+                    <View style={styles.modalView}>
+                        <ActivityIndicator size="large" color="#0000ff" />
+                    </View>
+                ) : (
+                    <View style={styles.modalView}>
+                        <TextButton
+                            text="Take Photo"
+                            onPress={() => handlePhotoOptionSelection("take")}
+                        />
+                        <TextButton
+                            text="Upload Photo"
+                            onPress={() => handlePhotoOptionSelection("upload")}
+                        />
+                        <TextButton text="Cancel" onPress={() => hideModal()} />
+                    </View>
+                )}
+            </Modal>
             <Tab.Navigator>
                 <Tab.Screen name="Tops" component={TopsTab} />
                 <Tab.Screen name="Bottoms" component={BottomsTab} />
                 <Tab.Screen name="Accessories" component={AccessoriesTab} />
                 <Tab.Screen name="Shoes" component={ShoesTab} />
             </Tab.Navigator>
+            <ClothingItemModal
+                visible={isEditModalVisible}
+                onClose={() => setIsEditModalVisible(false)}
+                onSave={handleSaveItem}
+                item={currentItem}
+            />
         </View>
     );
 }
@@ -263,6 +352,21 @@ export default function WardrobePage() {
 const styles = StyleSheet.create({
     container: {
         flex: 1,
+    },
+    modalView: {
+        margin: 20,
+        backgroundColor: "white",
+        borderRadius: 20,
+        padding: 35,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5,
     },
     tabContainer: {
         flex: 1,
