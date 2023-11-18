@@ -2,7 +2,7 @@ import React from "react";
 import { StyleSheet, Text, View, Switch } from "react-native";
 import Slider from "@react-native-community/slider";
 import IconButton from "../Component/IconButton";
-// import OutfitDisplay from '../Component/OutfitDisplay';
+import OutfitDisplay from "../Component/OutfitDisplay";
 
 export default function GeneratorPage() {
     /** 
@@ -54,7 +54,13 @@ export default function GeneratorPage() {
                 <Text style={styles.label}>Formal</Text>
             </View>
 
-            {/* <OutfitDisplay style={styles.OutfitDisplay} /> */}
+            <OutfitDisplay
+                style={styles.OutfitDisplay}
+                hatImgSrc="https://www.agnoulitahats.com/cdn/shop/files/DSC_0006.webp?crop=center&height=1875&v=1689711052&width=2500"
+                shirtImgSrc="https://cdn11.bigcommerce.com/s-za5m5kya2c/images/stencil/1280x1280/products/263/644/Oppenheimer_Mock_Up_Edited__64095.1691524917.png?c=1"
+                pantsImgSrc="https://static.vecteezy.com/system/resources/previews/021/809/260/original/yellow-pants-isolated-on-a-transparent-background-png.png"
+                shoesImgSrc="https://cdn.imgbin.com/13/0/11/imgbin-dress-shoe-bata-shoes-oxford-shoe-hush-puppies-sandals-86zmS8Vd1d7BKFmqv15irniAM.jpg"
+            />
 
             <View style={styles.optionsContainer}>
                 <IconButton name="close-outline" />
@@ -86,7 +92,7 @@ const styles = StyleSheet.create({
         marginBottom: 5,
     },
     OutfitDisplay: {
-        width: "100%",
+        width: "50%",
         height: "60%",
         marginTop: 10,
     },
