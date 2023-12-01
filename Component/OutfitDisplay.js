@@ -88,6 +88,6 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "20%",
         marginBottom: "1%",
-        borderColor: "#4882F9",
+        borderColor: "#FFD700",
     },
 });
