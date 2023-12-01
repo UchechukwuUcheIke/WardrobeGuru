@@ -2,6 +2,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable-next-line react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -76,16 +77,13 @@ export default function HomePage({
         }
     }
 
-    useEffect(() => {
-        handleChangeOutfit();
-    }, []);
 
     // Sprays confetti on screen after user has picked out an outfit
     useEffect(() => {
         if (confettiRef.current) {
             confettiRef.current.start();
         }
-    }, [updateClothesData]);
+    }, [clothesData]);
 
     return [
         <ConfettiCannon
@@ -122,6 +120,8 @@ export default function HomePage({
             </View>
 
             <View style={styles.optionsContainer}>
+                <View style={styles.featureRow}>
+                    <Text style={styles.label}>Casual</Text>
                 <Slider
                     style={{ width: 150, height: 40 }}
                     minimumValue={1}
@@ -132,6 +132,8 @@ export default function HomePage({
                     maximumTrackTintColor="#000000"
                     onSlidingComplete={handleFormalityChange}
                 />
+                    <Text style={styles.label}>Formal</Text>
+                </View>
 
                 <TextButton
                     text="Looks good to me!"
@@ -166,6 +168,12 @@ const styles = StyleSheet.create({
         width: "60%",
         alignItems: "center",
         height: "100%",
+    featureRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 5,
+        width: "60%",
     },
     heading: {
         color: "black",
@@ -186,5 +194,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "30%",
         alignItems: "center",
+    },
+    label: {
+        fontSize: 20,
     },
 });

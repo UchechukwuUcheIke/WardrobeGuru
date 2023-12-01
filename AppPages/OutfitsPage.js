@@ -46,6 +46,7 @@ export default function OutfitsPage({
 
     // TODO: Update this to use OutfitDisplay instead of Image (whether select is enabled or not)
     function RenderItem({ item }) {
+        console.log("HERE")
         return (
             <View style={{ marginTop: 10, padding: 20 }}>
                 {Select ? (
@@ -74,6 +75,7 @@ export default function OutfitsPage({
                             outfit={item}
                             clothesData={clothesData}
                         />
+
                     </TouchableOpacity>
                 )}
             </View>
