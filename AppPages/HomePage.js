@@ -1,6 +1,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable-next-line react-hooks/exhaustive-deps */
 
 import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
@@ -62,7 +63,7 @@ export default function HomePage({
 
     useEffect(() => {
         handleChangeOutfit();
-    });
+    }, []);
 
     // Sprays confetti on screen after user has picked out an outfit
     useEffect(() => {
