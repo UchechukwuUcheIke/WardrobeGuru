@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 import { Modal, View, Text, TextInput, StyleSheet, Image } from "react-native";
 import TextButton from "./TextButton";
 
-function ClothingItemModal({ visible, onClose, onSave, item }) {
+function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEditMode}) {
     //   const [nickname, setNickname] = useState(item.nickname || '');
     //   const [category, setCategory] = useState(item.category || '');
     //   const [formality, setFormality] = useState(item.formality || '');
@@ -34,7 +34,22 @@ function ClothingItemModal({ visible, onClose, onSave, item }) {
             formality,
             warmth /* ... other attributes */,
         });
-        onClose(); // Close the modal
+        onClose(); // Close the modal        
+        setEditMode(false); 
+    };
+
+    const getTextInputStyle = (isEditMode) => {
+        return {
+            height: 40,
+            marginVertical: 10,
+            borderWidth: 1,
+            padding: 10,
+            borderRadius: 5,
+            borderColor: isEditMode ? "#007BFF" : "#ddd", // Highlight border in edit mode
+            backgroundColor: isEditMode ? "#FFFFFF" : "#F8F8F8", // Lighter background when not editable
+            color: isEditMode ? "#000000" : "#777777", // Dim text color when not editable
+            width: "100%",
+        };
     };
 
     return (
@@ -55,30 +70,47 @@ function ClothingItemModal({ visible, onClose, onSave, item }) {
                 )}
                 <Text>Nick Name:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={getTextInputStyle(editMode)}
                     onChangeText={setNickname}
                     value={nickname}
+                    editable={editMode}
                 />
                 <Text>Category:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={getTextInputStyle(editMode)}
                     onChangeText={setCategory}
                     value={category}
+                    editable={editMode}
                 />
                 <Text>Formality:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={getTextInputStyle(editMode)}
                     onChangeText={setFormality}
                     value={formality}
+                    editable={editMode}
                 />
                 <Text>Warmth:</Text>
                 <TextInput
-                    style={styles.input}
+                    style={getTextInputStyle(editMode)}
                     onChangeText={setWarmth}
                     value={warmth}
+                    editable={editMode}
                 />
-                <TextButton text="Save" onPress={handleSave} />
-                <TextButton text="Cancel" onPress={onClose} />
+                {/* Buttons for Edit and Close */}
+                {!editMode && (
+                    <>
+                        <TextButton text="Edit" onPress={toggleEditMode} />
+                        <TextButton text="Close" onPress={onClose} />
+                    </>
+                )}
+                
+                {/* Save and Cancel buttons only appear when in edit mode */}
+                {editMode && (
+                    <>
+                        <TextButton text="Save" onPress={handleSave} />
+                        <TextButton text="Cancel" onPress={onClose} />
+                    </>
+                )}
             </View>
         </Modal>
     );

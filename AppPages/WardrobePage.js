@@ -37,6 +37,8 @@ export default function WardrobePage() {
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [currentItem, setCurrentItem] = useState({}); // The item currently being edited
 
+    const [editMode, setEditMode] = useState(false);
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
@@ -59,7 +61,9 @@ export default function WardrobePage() {
                         />
                     </TouchableOpacity>
                 ) : (
-                    <TouchableOpacity style={styles.selectButton}>
+                    <TouchableOpacity 
+                        style={styles.selectButton}
+                        onPress={() => showItemDetail(item)}>
                         <Image
                             source={{ uri: item.url }}
                             style={styles.image}
@@ -213,16 +217,24 @@ export default function WardrobePage() {
         setShoes(newShoes);
     };
 
-    const DeleteItems = () => {
-        const newTops = Tops.filter((item) => !item.selected);
-        setTops(newTops);
-        const newBottoms = Bottoms.filter((item) => !item.selected);
-        setBottoms(newBottoms);
-        const newAccessories = Accessories.filter((item) => !item.selected);
-        setAccessories(newAccessories);
-        const newShoes = Shoes.filter((item) => !item.selected);
-        setShoes(newShoes);
-        setSelect(false);
+    const DeleteItems = (itemToDelete) => {
+        if (itemToDelete) {
+            // Logic for deleting a single item
+            setTops((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
+            setBottoms((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
+            setAccessories((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
+            setShoes((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
+        } else {
+            const newTops = Tops.filter((item) => !item.selected);
+            setTops(newTops);
+            const newBottoms = Bottoms.filter((item) => !item.selected);
+            setBottoms(newBottoms);
+            const newAccessories = Accessories.filter((item) => !item.selected);
+            setAccessories(newAccessories);
+            const newShoes = Shoes.filter((item) => !item.selected);
+            setShoes(newShoes);
+            setSelect(false);
+        }
     };
 
     function showModal() {
@@ -236,6 +248,19 @@ export default function WardrobePage() {
     const AddItems = () => {
         showModal();
     };
+
+
+    const showItemDetail = (item) => {
+        setCurrentItem(item);        
+        setEditMode(false);
+        setIsEditModalVisible(true);
+    };
+
+
+    const toggleEditMode = () => {
+        setEditMode(!editMode);
+    };
+
 
     useEffect(() => {
         if (Select) {
@@ -289,6 +314,7 @@ export default function WardrobePage() {
             hideModal();
             setAdding(false);
             setCurrentItem(newItem); // Set the new item as the current item
+            setEditMode(true);
             setIsEditModalVisible(true); // Show the edit modal
         }, 2000); // Simulate loading for 2 seconds
     }
@@ -300,11 +326,49 @@ export default function WardrobePage() {
         }, 1000);
     }
 
-    // Define a function to handle saving the edited item
+
+    // const handleSaveItem = (editedItem) => {
+    //     setTops((prevItems) => [editedItem, ...prevItems]);
+    //     setIsEditModalVisible(false); // Hide the edit modal
+    // };
+    
     const handleSaveItem = (editedItem) => {
-        setTops((prevItems) => [editedItem, ...prevItems]);
-        setIsEditModalVisible(false); // Hide the edit modal
+        // Function to update the specific category array
+        const updateArray = (array, setFunction) => {
+            const index = array.findIndex(item => item.id === editedItem.id);
+            if (index >= 0) {
+                // Update existing item
+                const newArray = [...array];
+                newArray[index] = editedItem;
+                setFunction(newArray);
+            } else {
+                // Add new item
+                setFunction([editedItem, ...array]);
+            }
+        };
+    
+        // Determine which category to update
+        switch (editedItem.category) {
+            case 'tops':
+                updateArray(Tops, setTops);
+                break;
+            case 'bottoms':
+                updateArray(Bottoms, setBottoms);
+                break;
+            case 'accessories':
+                updateArray(Accessories, setAccessories);
+                break;
+            case 'shoes':
+                updateArray(Shoes, setShoes);
+                break;
+            default:
+                // Handle unknown category
+                break;
+        }
+    
+        setIsEditModalVisible(false); // Hide the modal
     };
+
 
     return (
         <View style={styles.container}>
@@ -344,6 +408,8 @@ export default function WardrobePage() {
                 onClose={() => setIsEditModalVisible(false)}
                 onSave={handleSaveItem}
                 item={currentItem}
+                editMode={editMode} // Pass this state down to the modal
+                toggleEditMode={toggleEditMode}
             />
         </View>
     );
