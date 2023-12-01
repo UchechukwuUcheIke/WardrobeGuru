@@ -39,6 +39,7 @@ export default function OutfitsPage() {
                                 borderWidth: item.selected ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 ) : (
@@ -46,6 +47,7 @@ export default function OutfitsPage() {
                         <Image
                             source={{ uri: item.url }}
                             style={styles.image}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 )}

@@ -38,6 +38,16 @@ function SortMostRecent(a, b) {
 }
 
 export default function WardrobePage({ clothesData, updateClothesData }) {
+    console.log(
+        clothesData
+            .filter(
+                (item) =>
+                    item.dateDeleted === null &&
+                    item.ownedByUser &&
+                    item.category === "bottoms"
+            )
+            .sort(SortMostRecent)
+    );
     const [Select, setSelect] = useState(false);
     const [Accessories, setAccessories] = useState(
         clothesData
@@ -104,6 +114,7 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
                                 borderWidth: item.selected ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 ) : (
@@ -111,6 +122,7 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
                         <Image
                             source={{ uri: item.imageUrl }}
                             style={styles.image}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 )}

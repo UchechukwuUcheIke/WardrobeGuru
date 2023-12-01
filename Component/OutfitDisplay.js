@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Image, View} from "react-native";
+import { StyleSheet, Image, View } from "react-native";
 import PropTypes from "prop-types";
 
 export default function OutfitDisplay({
@@ -15,24 +15,28 @@ export default function OutfitDisplay({
                 source={{
                     uri: hatImgSrc,
                 }}
+                resizeMode="contain"
             />
             <Image
                 style={styles.image}
                 source={{
                     uri: shirtImgSrc,
                 }}
+                resizeMode="contain"
             />
             <Image
                 style={styles.image}
                 source={{
                     uri: pantsImgSrc,
                 }}
+                resizeMode="contain"
             />
             <Image
                 style={styles.image}
                 source={{
                     uri: shoesImgSrc,
                 }}
+                resizeMode="contain"
             />
         </View>
     );

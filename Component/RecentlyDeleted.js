@@ -83,6 +83,7 @@ export default function RecentlyDeletedPage({
                                 borderWidth: item.selected ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 ) : (
@@ -90,6 +91,7 @@ export default function RecentlyDeletedPage({
                         <Image
                             source={{ uri: item.imageUrl }}
                             style={styles.image}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 )}
