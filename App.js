@@ -76,8 +76,6 @@ export default function App() {
                         <GeneratorPage
                             clothesData={clothesData}
                             outfitsData={outfitsData}
-                            updateClothesData={updateClothesData}
-                            updateOutfitsData={updateOutfitsData}
                         />
                     )}
                     options={{ title: "Outfit Generator" }}
@@ -88,7 +86,6 @@ export default function App() {
                         <OutfitsPage
                             clothesData={clothesData}
                             outfitsData={outfitsData}
-                            updateClothesData={updateClothesData}
                             updateOutfitsData={updateOutfitsData}
                         />
                     )}
@@ -98,8 +95,8 @@ export default function App() {
                     name="Home"
                     component={() => (
                         <HomePage
+                            clothesData={clothesData}
                             outfitsData={outfitsData}
-                            updateOutfitsData={updateOutfitsData}
                         />
                     )}
                     options={{ title: "Home" }}
