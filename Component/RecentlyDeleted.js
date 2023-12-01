@@ -28,10 +28,10 @@ function SortMostRecent(a, b) {
     const dateA = new Date(a.dateDeleted);
     const dateB = new Date(b.dateDeleted);
 
-    if (dateA < dateB) {
+    if (dateA > dateB) {
         return -1;
     }
-    if (dateA > dateB) {
+    if (dateA < dateB) {
         return 1;
     }
     return 0;

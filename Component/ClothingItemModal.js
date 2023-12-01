@@ -10,18 +10,16 @@ function ClothingItemModal({ visible, onClose, onSave, item }) {
     //   const [warmth, setWarmth] = useState(item.warmth || '');
     //   // add more states for other attributes
 
-    const [nickname, setNickname] = useState("");
     const [category, setCategory] = useState("");
-    const [formality, setFormality] = useState("");
-    const [warmth, setWarmth] = useState("");
+    const [formality, setFormality] = useState(1);
+    const [warmth, setWarmth] = useState(1);
 
     // This effect will update the state whenever the item prop changes
     useEffect(() => {
         if (item) {
-            setNickname(item.nickname || "");
-            setCategory(item.category || "");
-            setFormality(item.formality || "");
-            setWarmth(item.warmth || "");
+            setCategory(item.category);
+            setFormality(item.formalityRating);
+            setWarmth(item.warmthRating);
         }
     }, [item]); // Only re-run the effect if the item changes
 
@@ -29,7 +27,6 @@ function ClothingItemModal({ visible, onClose, onSave, item }) {
         // Call the onSave function passed from the parent component, with the new details
         onSave({
             ...item,
-            nickname,
             category,
             formality,
             warmth /* ... other attributes */,
@@ -45,19 +42,10 @@ function ClothingItemModal({ visible, onClose, onSave, item }) {
             onRequestClose={onClose}
         >
             <View style={styles.modalView}>
-                {/* Display the photo */}
-                {item.url && (
-                    <Image
-                        source={{ uri: item.url }}
-                        style={styles.image}
-                        resizeMode="contain"
-                    />
-                )}
-                <Text>Nick Name:</Text>
-                <TextInput
-                    style={styles.input}
-                    onChangeText={setNickname}
-                    value={nickname}
+                <Image
+                    source={{ uri: item.imageUrl }}
+                    style={styles.image}
+                    resizeMode="contain"
                 />
                 <Text>Category:</Text>
                 <TextInput
@@ -89,12 +77,12 @@ ClothingItemModal.propTypes = {
     visible: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-    item: PropTypes.arrayOf(
-        PropTypes.shape({
-            url: PropTypes.string.isRequired,
-            selected: PropTypes.bool.isRequired,
-        })
-    ).isRequired,
+    item: PropTypes.shape({
+        imageUrl: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+        formalityRating: PropTypes.number.isRequired,
+        warmthRating: PropTypes.number.isRequired,
+    }).isRequired,
 };
 
 const styles = StyleSheet.create({

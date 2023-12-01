@@ -28,26 +28,17 @@ function SortMostRecent(a, b) {
     const dateA = new Date(a.dateAdded);
     const dateB = new Date(b.dateAdded);
 
-    if (dateA < dateB) {
+    if (dateA > dateB) {
         return -1;
     }
-    if (dateA > dateB) {
+    if (dateA < dateB) {
         return 1;
     }
     return 0;
 }
 
 export default function WardrobePage({ clothesData, updateClothesData }) {
-    console.log(
-        clothesData
-            .filter(
-                (item) =>
-                    item.dateDeleted === null &&
-                    item.ownedByUser &&
-                    item.category === "bottoms"
-            )
-            .sort(SortMostRecent)
-    );
+    console.log(clothesData);
     const [Select, setSelect] = useState(false);
     const [Accessories, setAccessories] = useState(
         clothesData
@@ -93,7 +84,7 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
     const [Adding, setAdding] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-    const [currentItem, setCurrentItem] = useState({}); // The item currently being edited
+    const [currentItem, setCurrentItem] = useState(clothesData[0]); // The item currently being edited
 
     const navigation = useNavigation();
 
@@ -277,34 +268,50 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
     const DeleteItems = () => {
         const newAccessories = Accessories.map((item) => {
             if (item.selected) {
-                return { ...item, dateDeleted: Date.now(), selected: false };
+                return {
+                    ...item,
+                    dateDeleted: new Date().toJSON(),
+                    selected: false,
+                };
             }
             return item;
         });
         const newTops = Tops.map((item) => {
             if (item.selected) {
-                return { ...item, dateDeleted: Date.now(), selected: false };
+                return {
+                    ...item,
+                    dateDeleted: new Date().toJSON(),
+                    selected: false,
+                };
             }
             return item;
         });
         const newBottoms = Bottoms.map((item) => {
             if (item.selected) {
-                return { ...item, dateDeleted: Date.now(), selected: false };
+                return {
+                    ...item,
+                    dateDeleted: new Date().toJSON(),
+                    selected: false,
+                };
             }
             return item;
         });
         const newShoes = Shoes.map((item) => {
             if (item.selected) {
-                return { ...item, dateDeleted: Date.now(), selected: false };
+                return {
+                    ...item,
+                    dateDeleted: new Date().toJSON(),
+                    selected: false,
+                };
             }
             return item;
         });
-        updateClothesData({
+        updateClothesData([
             ...newAccessories,
             ...newTops,
             ...newBottoms,
             ...newShoes,
-        });
+        ]);
         setSelect(false);
     };
 
@@ -353,16 +360,18 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
     function AddNewItem() {
         // Step 1: Simulate selecting a photo
         const newItem = {
-            id: Date.now().toString(), // Unique ID for the new item
+            id: Date.now(), // Unique ID for the new item
+            dateAdded: new Date().toJSON(),
+            dateDeleted: null,
+            dateLastWorn: null,
+            timesWorn: 0,
             imageUrl:
                 "https://store.nytimes.com/cdn/shop/products/TruthHoodie-WhiteFront_1024x1024.jpg?v=1571439084",
             category: "tops",
+            formalityRating: 2,
+            warmthRating: 4,
+            ownedByUser: true,
             selected: false,
-            nickname: "New Hoodie",
-            formality: "casual",
-            warmth: "warm",
-            timesWorn: 0,
-            dateAdded: new Date().toLocaleDateString(),
         };
 
         // Step 2: Show loading icon
@@ -386,7 +395,7 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
 
     // Define a function to handle saving the edited item
     const handleSaveItem = (editedItem) => {
-        setTops((prevItems) => [editedItem, ...prevItems]);
+        updateClothesData([...clothesData, editedItem]);
         setIsEditModalVisible(false); // Hide the edit modal
     };
 
