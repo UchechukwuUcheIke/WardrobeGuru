@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 import React, { useState, useEffect } from "react";
@@ -22,16 +23,26 @@ export default function GeneratorPage({
         setFormalityLevel(value);
     };
 
-    const OwnedClothes = Object.groupBy(
-        clothesData.filter(
-            (item) => item.dateDeleted === null && item.ownedByUser
-        ),
-        ({ category }) => category
-    );
-    const UnownedClothes = Object.groupBy(
-        clothesData.filter((item) => !item.ownedByUser),
-        ({ category }) => category
-    );
+    const clothesByCategory = (groupedClothes, item) => {
+        const { category } = item;
+
+        // Create an array for the category if it doesn't exist
+        if (!groupedClothes[category]) {
+            groupedClothes[category] = [];
+        }
+
+        // Push the item to the corresponding category array
+        groupedClothes[category].push(item);
+
+        return groupedClothes;
+    };
+
+    const OwnedClothes = clothesData
+        .filter((item) => item.dateDeleted === null && item.ownedByUser)
+        .reduce(clothesByCategory, {});
+    const UnownedClothes = clothesData
+        .filter((item) => !item.ownedByUser)
+        .reduce(clothesByCategory, {});
 
     const handleCheck = () => {
         updateOutfitsData([...outfitsData, outfit]);
