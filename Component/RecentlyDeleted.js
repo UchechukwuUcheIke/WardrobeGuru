@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
@@ -16,17 +17,53 @@ import { HeaderBackButton } from "@react-navigation/elements";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import Data from "../assets/data/recently_deleted.json";
-
 const Tab = createMaterialTopTabNavigator();
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function RecentlyDeletedPage() {
+const THIRTY_DAYS_IN_MS = 30 * 24 * 60 * 60 * 1000;
+
+function SortMostRecent(a, b) {
+    const dateA = new Date(a.dateDeleted);
+    const dateB = new Date(b.dateDeleted);
+
+    if (dateA < dateB) {
+        return -1;
+    }
+    if (dateA > dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+export default function RecentlyDeletedPage({
+    clothesData,
+    outfitsData,
+    updateClothesData,
+    updateOutfitsData,
+}) {
     const [Select, setSelect] = useState(false);
-    const [Clothes, setClothes] = useState(Data.Clothes);
-    const [Outfits, setOutfits] = useState(Data.Outfits);
+    const [Clothes, setClothes] = useState(
+        clothesData
+            .filter(
+                (item) =>
+                    item.dateDeleted &&
+                    Date.now() - Date.parse(item.dateDeleted) <
+                        THIRTY_DAYS_IN_MS
+            )
+            .sort(SortMostRecent)
+    );
+    const [Outfits, setOutfits] = useState(
+        outfitsData
+            .filter(
+                (item) =>
+                    item.dateDeleted &&
+                    Date.UTC - Date.parse(item.dateDeleted) < THIRTY_DAYS_IN_MS
+            )
+            .sort(SortMostRecent)
+    );
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
@@ -38,7 +75,7 @@ export default function RecentlyDeletedPage() {
                         onPress={() => SelectItem(item)}
                     >
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={{
                                 width: 140,
                                 height: 140,
@@ -51,7 +88,7 @@ export default function RecentlyDeletedPage() {
                 ) : (
                     <TouchableOpacity style={styles.selectButton}>
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={styles.image}
                         />
                     </TouchableOpacity>
@@ -63,7 +100,7 @@ export default function RecentlyDeletedPage() {
     RenderItem.propTypes = {
         item: PropTypes.arrayOf(
             PropTypes.shape({
-                url: PropTypes.string.isRequired,
+                imageUrl: PropTypes.string.isRequired,
                 selected: PropTypes.bool.isRequired,
             })
         ).isRequired,
@@ -146,10 +183,20 @@ export default function RecentlyDeletedPage() {
 
     // TODO: only run the function relevant to the current tab
     const DeleteItems = () => {
-        const newClothes = Clothes.filter((item) => !item.selected);
-        setClothes(newClothes);
-        const newOutfits = Outfits.filter((item) => !item.selected);
-        setOutfits(newOutfits);
+        const newClothes = Clothes.map((item) => {
+            if (item.selected) {
+                return { ...item, dateDeleted: null, selected: false };
+            }
+            return item;
+        });
+        updateClothesData(newClothes);
+        const newOutfits = Outfits.map((item) => {
+            if (item.selected) {
+                return { ...item, dateDeleted: null, selected: false };
+            }
+            return item;
+        });
+        updateOutfitsData(newOutfits);
         setSelect(false);
     };
 
