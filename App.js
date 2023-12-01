@@ -1,6 +1,6 @@
 /* eslint-disable react/no-unstable-nested-components */
 // Imports for React Native
-import React from "react";
+import React, { useState } from "react";
 
 // Imports for Navigation Bar
 import { NavigationContainer } from "@react-navigation/native";
@@ -13,12 +13,25 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import HomePage from "./AppPages/HomePage";
 import AccountPage from "./AppPages/AccountPage";
 import GeneratorPage from "./AppPages/GeneratorPage";
-import OutfitPage from "./AppPages/OutfitsPage";
+import OutfitsPage from "./AppPages/OutfitsPage";
 import WardrobePage from "./AppPages/WardrobePage";
+
+import ClothesData from "./assets/data/clothes.json";
+import OutfitsData from "./assets/data/outfits.json";
 
 const Tab = createBottomTabNavigator();
 
 export default function App() {
+    const [clothesData, setClothesData] = useState(ClothesData);
+    const [outfitsData, setOutfitsData] = useState(OutfitsData);
+
+    const updateClothesData = (newData) => {
+        setClothesData(newData);
+    };
+    const updateOutfitsData = (newData) => {
+        setOutfitsData(newData);
+    };
+
     return (
         <NavigationContainer>
             <Tab.Navigator
@@ -59,27 +72,57 @@ export default function App() {
             >
                 <Tab.Screen
                     name="Generator"
-                    component={GeneratorPage}
+                    component={() => (
+                        <GeneratorPage
+                            clothesData={clothesData}
+                            outfitsData={outfitsData}
+                            updateOutfitsData={updateOutfitsData}
+                        />
+                    )}
                     options={{ title: "Outfit Generator" }}
                 />
                 <Tab.Screen
                     name="Outfits"
-                    component={OutfitPage}
+                    component={() => (
+                        <OutfitsPage
+                            clothesData={clothesData}
+                            outfitsData={outfitsData}
+                            updateOutfitsData={updateOutfitsData}
+                        />
+                    )}
                     options={{ title: "Saved Outfits" }}
                 />
                 <Tab.Screen
                     name="Home"
-                    component={HomePage}
+                    component={() => (
+                        <HomePage
+                            clothesData={clothesData}
+                            outfitsData={outfitsData}
+                            updateClothesData={updateClothesData}
+                        />
+                    )}
                     options={{ title: "Home" }}
                 />
                 <Tab.Screen
                     name="Wardrobe"
-                    component={WardrobePage}
+                    component={() => (
+                        <WardrobePage
+                            clothesData={clothesData}
+                            updateClothesData={updateClothesData}
+                        />
+                    )}
                     options={{ title: "Wardrobe" }}
                 />
                 <Tab.Screen
                     name="Account"
-                    component={AccountPage}
+                    component={() => (
+                        <AccountPage
+                            clothesData={clothesData}
+                            outfitsData={outfitsData}
+                            updateClothesData={updateClothesData}
+                            updateOutfitsData={updateOutfitsData}
+                        />
+                    )}
                     options={{ title: "Account" }}
                 />
             </Tab.Navigator>

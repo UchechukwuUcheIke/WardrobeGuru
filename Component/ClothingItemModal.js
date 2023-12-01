@@ -1,64 +1,58 @@
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import { Modal, View, Text, TextInput, StyleSheet, Image } from "react-native";
 import TextButton from "./TextButton";
 
-function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEditMode}) {
-    //   const [nickname, setNickname] = useState(item.nickname || '');
-    //   const [category, setCategory] = useState(item.category || '');
-    //   const [formality, setFormality] = useState(item.formality || '');
-    //   const [warmth, setWarmth] = useState(item.warmth || '');
-    //   // add more states for other attributes
-
-    const [id, setId] = useState("");
-    const [nickname, setNickname] = useState("");
+function ClothingItemModal({
+    visible,
+    onClose,
+    onSave,
+    item,
+    editMode,
+    toggleEditMode,
+}) {
     const [category, setCategory] = useState("");
-    const [formality, setFormality] = useState("");
-    const [warmth, setWarmth] = useState("");
-    const [dateAdded, setDateAdded] = useState("");
-    const [dateLastWorn, setDateLastWorn] = useState("");
-    const [timesWorn, setTimesWorn] = useState("");
+    const [formality, setFormality] = useState(1);
+    const [warmth, setWarmth] = useState(1);
 
     // This effect will update the state whenever the item prop changes
     useEffect(() => {
         if (item) {
-            setId(item.id || "");
-            setNickname(item.nickname || "");
-            setCategory(item.category || "");
-            setFormality(item.formality || "");
-            setWarmth(item.warmth || "");
-            setDateAdded(item.dateAdded || "");
-            setDateLastWorn(item.dateLastWorn || "");
-            setTimesWorn(item.timesWorn || "");
+            setCategory(item.category);
+            setFormality(item.formalityRating);
+            setWarmth(item.warmthRating);
         }
     }, [item]); // Only re-run the effect if the item changes
 
     const handleSave = () => {
+        const formalityRating = formality === "" ? 1 : formality;
+        const warmthRating = warmth === "" ? 1 : warmth;
         // Call the onSave function passed from the parent component, with the new details
         onSave({
             ...item,
-            nickname,
             category,
-            formality,
-            warmth /* ... other attributes */,
+            formalityRating,
+            warmthRating /* ... other attributes */,
         });
-        onClose(); // Close the modal        
-        toggleEditMode(); 
+        onClose(); // Close the modal
+        toggleEditMode();
     };
 
-    const getTextInputStyle = (isEditMode) => {
-        return {
-            height: 40,
-            marginVertical: 10,
-            borderWidth: 1,
-            padding: 10,
-            borderRadius: 5,
-            borderColor: isEditMode ? "#007BFF" : "#ddd", // Highlight border in edit mode
-            backgroundColor: isEditMode ? "#FFFFFF" : "#F8F8F8", // Lighter background when not editable
-            color: isEditMode ? "#000000" : "#777777", // Dim text color when not editable
-            width: "100%",
-        };
-    };
+    const getTextInputStyle = (isEditMode) => ({
+        height: 40,
+        marginVertical: 10,
+        borderWidth: 1,
+        padding: 10,
+        borderRadius: 5,
+        borderColor: isEditMode ? "#007BFF" : "#ddd", // Highlight border in edit mode
+        backgroundColor: isEditMode ? "#FFFFFF" : "#F8F8F8", // Lighter background when not editable
+        color: isEditMode ? "#000000" : "#777777", // Dim text color when not editable
+        width: "100%",
+    });
+
+    // Format the date as "Mon DD, YYYY"
+    const options = { month: "short", day: "numeric", year: "numeric" };
 
     return (
         <Modal
@@ -68,21 +62,13 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
             onRequestClose={onClose}
         >
             <View style={styles.modalView}>
-                {/* Display the photo */}
-                {item.url && (
+                {item.imageUrl && (
                     <Image
-                        source={{ uri: item.url }}
+                        source={{ uri: item.imageUrl }}
                         style={styles.image}
                         resizeMode="contain"
                     />
                 )}
-                {/* <Text>Nick Name:</Text>
-                <TextInput
-                    style={getTextInputStyle(editMode)}
-                    onChangeText={setNickname}
-                    value={nickname}
-                    editable={editMode}
-                /> */}
                 <Text>Category:</Text>
                 <TextInput
                     style={getTextInputStyle(editMode)}
@@ -93,35 +79,60 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
                 <Text>Formality:</Text>
                 <TextInput
                     style={getTextInputStyle(editMode)}
-                    onChangeText={setFormality}
+                    onChangeText={(text) => {
+                        const numericValue = parseInt(text, 10);
+                        if (!Number.isNaN(numericValue) || text === "") {
+                            setFormality(
+                                text === ""
+                                    ? ""
+                                    : Math.min(5, Math.max(1, numericValue))
+                            );
+                        }
+                    }}
                     value={formality}
                     editable={editMode}
                 />
                 <Text>Warmth:</Text>
                 <TextInput
                     style={getTextInputStyle(editMode)}
-                    onChangeText={setWarmth}
+                    onChangeText={(text) => {
+                        const numericValue = parseInt(text, 10);
+                        if (!Number.isNaN(numericValue) || text === "") {
+                            setWarmth(
+                                text === ""
+                                    ? ""
+                                    : Math.min(5, Math.max(1, numericValue))
+                            );
+                        }
+                    }}
                     value={warmth}
                     editable={editMode}
                 />
-                <Text>Date Added:</Text>
-                <TextInput
-                    style={getTextInputStyle(false)}
-                    value={dateAdded}
-                    editable={false}
-                />
-                <Text>Date Last Worn:</Text>
-                <TextInput
-                    style={getTextInputStyle(false)}
-                    value={dateLastWorn}
-                    editable={false}
-                />
-                <Text>Times Worn:</Text>
-                <TextInput
-                    style={getTextInputStyle(false)}
-                    value={timesWorn}
-                    editable={false}
-                />
+                {!editMode && (
+                    <View style={styles.metaView}>
+                        <Text style={styles.metaText}>
+                            In Wardrobe Since:{" "}
+                            {item.dateAdded === null
+                                ? "?"
+                                : new Date(item.dateAdded).toLocaleString(
+                                      "en-US",
+                                      options
+                                  )}
+                        </Text>
+                        <Text style={styles.metaText}>
+                            Last Worn:{" "}
+                            {item.dateLastWorn === null
+                                ? "?"
+                                : new Date(item.dateLastWorn).toLocaleString(
+                                      "en-US",
+                                      options
+                                  )}
+                        </Text>
+                        <Text style={styles.metaText}>
+                            Total Times Worn: {item.timesWorn}
+                        </Text>
+                    </View>
+                )}
                 {/* Buttons for Edit and Close */}
                 {!editMode && (
                     <>
@@ -129,7 +140,7 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
                         <TextButton text="Close" onPress={onClose} />
                     </>
                 )}
-                
+
                 {/* Save and Cancel buttons only appear when in edit mode */}
                 {editMode && (
                     <>
@@ -147,12 +158,12 @@ ClothingItemModal.propTypes = {
     visible: PropTypes.bool.isRequired,
     onClose: PropTypes.func.isRequired,
     onSave: PropTypes.func.isRequired,
-    item: PropTypes.arrayOf(
-        PropTypes.shape({
-            url: PropTypes.string.isRequired,
-            selected: PropTypes.bool.isRequired,
-        })
-    ).isRequired,
+    item: PropTypes.shape({
+        imageUrl: PropTypes.string.isRequired,
+        category: PropTypes.string.isRequired,
+        formalityRating: PropTypes.number.isRequired,
+        warmthRating: PropTypes.number.isRequired,
+    }).isRequired,
 };
 
 const styles = StyleSheet.create({
@@ -184,6 +195,15 @@ const styles = StyleSheet.create({
         borderRadius: 5,
         borderColor: "#ddd",
         width: "100%",
+    },
+    metaView: {
+        alignItems: "center",
+        marginTop: 10,
+        marginBottom: 20,
+        opacity: "50%",
+    },
+    metaText: {
+        marginBottom: 5,
     },
 });
 

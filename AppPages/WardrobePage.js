@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
@@ -18,24 +19,42 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import TextButton from "../Component/TextButton";
 import ClothingItemModal from "../Component/ClothingItemModal";
 
-import Data from "../assets/data/wardrobe.json";
-
 const Tab = createMaterialTopTabNavigator();
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function WardrobePage() {
+function SortMostRecent(a, b) {
+    const dateA = new Date(a.dateAdded);
+    const dateB = new Date(b.dateAdded);
+
+    if (dateA > dateB) {
+        return -1;
+    }
+    if (dateA < dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+export default function WardrobePage({ clothesData, updateClothesData }) {
+    const Clothes = clothesData
+        .filter((item) => item.dateDeleted === null && item.ownedByUser)
+        .sort(SortMostRecent);
+    const Accessories = Clothes.filter(
+        (item) => item.category === "accessories"
+    );
+    const Tops = Clothes.filter((item) => item.category === "tops");
+    const Bottoms = Clothes.filter((item) => item.category === "bottoms");
+    const Shoes = Clothes.filter((item) => item.category === "shoes");
+
     const [Select, setSelect] = useState(false);
-    const [Tops, setTops] = useState(Data.Tops);
-    const [Bottoms, setBottoms] = useState(Data.Bottoms);
-    const [Accessories, setAccessories] = useState(Data.Accessories);
-    const [Shoes, setShoes] = useState(Data.Shoes);
+    const [Selected, setSelected] = useState([]);
 
     const [Adding, setAdding] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
-    const [currentItem, setCurrentItem] = useState({}); // The item currently being edited
+    const [currentItem, setCurrentItem] = useState(clothesData[0]); // The item currently being edited
 
     const [editMode, setEditMode] = useState(false);
 
@@ -50,23 +69,26 @@ export default function WardrobePage() {
                         onPress={() => SelectItem(item)}
                     >
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={{
                                 width: 140,
                                 height: 140,
                                 margin: "2.5%",
-                                borderWidth: item.selected ? 3 : 0,
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 ) : (
-                    <TouchableOpacity 
+                    <TouchableOpacity
                         style={styles.selectButton}
-                        onPress={() => showItemDetail(item)}>
+                        onPress={() => showItemDetail(item)}
+                    >
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={styles.image}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 )}
@@ -77,8 +99,8 @@ export default function WardrobePage() {
     RenderItem.propTypes = {
         item: PropTypes.arrayOf(
             PropTypes.shape({
-                url: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
+                imageUrl: PropTypes.string.isRequired,
+                ownedByUser: PropTypes.bool.isRequired,
             })
         ).isRequired,
     };
@@ -154,79 +176,29 @@ export default function WardrobePage() {
 
     const ToggleSelect = () => {
         if (Select) {
-            const newTops = Tops.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setTops(newTops);
-            const newBottoms = Bottoms.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setBottoms(newBottoms);
-            const newAccessories = Accessories.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setAccessories(newAccessories);
-            const newShoes = Shoes.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setShoes(newShoes);
+            setSelected([]);
         }
         setSelect(!Select);
     };
 
     const SelectItem = (target) => {
-        const newTops = Tops.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setTops(newTops);
-        const newBottoms = Bottoms.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setBottoms(newBottoms);
-        const newAccessories = Accessories.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setAccessories(newAccessories);
-        const newShoes = Shoes.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setShoes(newShoes);
+        setSelected([...Selected, target.id]);
     };
 
     const DeleteItems = () => {
-        const newTops = Tops.filter((item) => !item.selected);
-        setTops(newTops);
-        const newBottoms = Bottoms.filter((item) => !item.selected);
-        setBottoms(newBottoms);
-        const newAccessories = Accessories.filter((item) => !item.selected);
-        setAccessories(newAccessories);
-        const newShoes = Shoes.filter((item) => !item.selected);
-        setShoes(newShoes);
-        setSelect(false);
+        if (Selected.length > 0) {
+            updateClothesData(
+                clothesData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: new Date().toJSON(),
+                        };
+                    }
+                    return item;
+                })
+            );
+        }
     };
 
     function showModal() {
@@ -241,18 +213,15 @@ export default function WardrobePage() {
         showModal();
     };
 
-
     const showItemDetail = (item) => {
-        setCurrentItem(item);        
+        setCurrentItem(item);
         setEditMode(false);
         setIsEditModalVisible(true);
     };
 
-
     const toggleEditMode = () => {
         setEditMode(!editMode);
     };
-
 
     useEffect(() => {
         if (Select) {
@@ -287,15 +256,17 @@ export default function WardrobePage() {
     function AddNewItem() {
         // Step 1: Simulate selecting a photo
         const newItem = {
-            id: Date.now().toString(), // Unique ID for the new item
-            url: "https://store.nytimes.com/cdn/shop/products/TruthHoodie-WhiteFront_1024x1024.jpg?v=1571439084",
-            category: "tops",
-            selected: false,
-            nickname: "New Hoodie",
-            formality: "casual",
-            warmth: "warm",
+            id: Date.now(), // Unique ID for the new item
+            dateAdded: new Date().toJSON(),
+            dateDeleted: null,
+            dateLastWorn: null,
             timesWorn: 0,
-            dateAdded: new Date().toLocaleDateString(),
+            imageUrl:
+                "https://store.nytimes.com/cdn/shop/products/TruthHoodie-WhiteFront_1024x1024.jpg?v=1571439084",
+            category: "tops",
+            formalityRating: 2,
+            warmthRating: 4,
+            ownedByUser: true,
         };
 
         // Step 2: Show loading icon
@@ -318,49 +289,25 @@ export default function WardrobePage() {
         }, 1000);
     }
 
-
     // const handleSaveItem = (editedItem) => {
     //     setTops((prevItems) => [editedItem, ...prevItems]);
     //     setIsEditModalVisible(false); // Hide the edit modal
     // };
-    
-    const handleSaveItem = (editedItem) => {
-        // Function to update the specific category array
-        const updateArray = (array, setFunction) => {
-            const index = array.findIndex(item => item.id === editedItem.id);
-            if (index >= 0) {
-                // Update existing item
-                const newArray = [...array];
-                newArray[index] = editedItem;
-                setFunction(newArray);
-            } else {
-                // Add new item
-                setFunction([editedItem, ...array]);
-            }
-        };
-    
-        // Determine which category to update
-        switch (editedItem.category) {
-            case 'tops':
-                updateArray(Tops, setTops);
-                break;
-            case 'bottoms':
-                updateArray(Bottoms, setBottoms);
-                break;
-            case 'accessories':
-                updateArray(Accessories, setAccessories);
-                break;
-            case 'shoes':
-                updateArray(Shoes, setShoes);
-                break;
-            default:
-                // Handle unknown category
-                break;
-        }
-    
-        setIsEditModalVisible(false); // Hide the modal
-    };
 
+    const handleSaveItem = (editedItem) => {
+        const index = clothesData.findIndex(
+            (item) => item.id === editedItem.id
+        );
+        if (index >= 0) {
+            // update existing item
+            const temp = [...clothesData];
+            temp[index] = editedItem;
+            updateClothesData(temp);
+        } else {
+            // add new item
+            updateClothesData([...clothesData, editedItem]);
+        }
+    };
 
     return (
         <View style={styles.container}>
@@ -390,9 +337,9 @@ export default function WardrobePage() {
                 )}
             </Modal>
             <Tab.Navigator>
+                <Tab.Screen name="Accessories" component={AccessoriesTab} />
                 <Tab.Screen name="Tops" component={TopsTab} />
                 <Tab.Screen name="Bottoms" component={BottomsTab} />
-                <Tab.Screen name="Accessories" component={AccessoriesTab} />
                 <Tab.Screen name="Shoes" component={ShoesTab} />
             </Tab.Navigator>
             <ClothingItemModal

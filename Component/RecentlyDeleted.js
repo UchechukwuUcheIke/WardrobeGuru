@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
@@ -16,20 +17,55 @@ import { HeaderBackButton } from "@react-navigation/elements";
 
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 
-import Data from "../assets/data/recently_deleted.json";
-
 const Tab = createMaterialTopTabNavigator();
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function RecentlyDeletedPage() {
+const THIRTY_DAYS_IN_MS = 30 * 24 * 60 * 60 * 1000;
+
+function SortMostRecent(a, b) {
+    const dateA = new Date(a.dateDeleted);
+    const dateB = new Date(b.dateDeleted);
+
+    if (dateA > dateB) {
+        return -1;
+    }
+    if (dateA < dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+export default function RecentlyDeletedPage({
+    clothesData,
+    outfitsData,
+    updateClothesData,
+    updateOutfitsData,
+}) {
+    console.log("Render");
+    const Clothes = clothesData
+        .filter(
+            (item) =>
+                item.dateDeleted &&
+                Date.now() - Date.parse(item.dateDeleted) < THIRTY_DAYS_IN_MS
+        )
+        .sort(SortMostRecent);
+    const Outfits = outfitsData
+        .filter(
+            (item) =>
+                item.dateDeleted &&
+                Date.UTC - Date.parse(item.dateDeleted) < THIRTY_DAYS_IN_MS
+        )
+        .sort(SortMostRecent);
+
     const [Select, setSelect] = useState(false);
-    const [Clothes, setClothes] = useState(Data.Clothes);
-    const [Outfits, setOutfits] = useState(Data.Outfits);
+    const [Selected, setSelected] = useState([]);
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
+        console.log("RenderItem");
         return (
             <View style={{ marginTop: 10, padding: 20 }}>
                 {Select ? (
@@ -38,21 +74,23 @@ export default function RecentlyDeletedPage() {
                         onPress={() => SelectItem(item)}
                     >
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={{
                                 width: 140,
                                 height: 140,
                                 margin: "2.5%",
-                                borderWidth: item.selected ? 3 : 0,
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 ) : (
                     <TouchableOpacity style={styles.selectButton}>
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={styles.image}
+                            resizeMode="contain"
                         />
                     </TouchableOpacity>
                 )}
@@ -63,19 +101,64 @@ export default function RecentlyDeletedPage() {
     RenderItem.propTypes = {
         item: PropTypes.arrayOf(
             PropTypes.shape({
-                url: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
+                imageUrl: PropTypes.string.isRequired,
+            })
+        ).isRequired,
+    };
+
+    // TODO: Update this to use OutfitDisplay instead of Image (whether select is enabled or not)
+    function RenderOutfit({ item }) {
+        console.log("RenderOutfit");
+        return (
+            <View style={{ marginTop: 10, padding: 20 }}>
+                {Select ? (
+                    <TouchableOpacity
+                        style={styles.selectButton}
+                        onPress={() => SelectItem(item)}
+                    >
+                        <Image
+                            source={{ uri: clothesData[0].imageUrl }}
+                            style={{
+                                width: 140,
+                                height: 140,
+                                margin: "2.5%",
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
+                                borderColor: "#33A8FF",
+                            }}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity style={styles.selectButton}>
+                        <Image
+                            source={{ uri: clothesData[0].imageUrl }}
+                            style={styles.image}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                )}
+            </View>
+        );
+    }
+
+    RenderOutfit.propTypes = {
+        item: PropTypes.arrayOf(
+            PropTypes.shape({
+                imageUrl: PropTypes.string.isRequired,
+                ownedByUser: PropTypes.bool.isRequired,
             })
         ).isRequired,
     };
 
     function EmptyList(items) {
+        console.log("EmptyList");
         return (
             <Text style={styles.empty}>No recently deleted {items} found.</Text>
         );
     }
 
     function ClothesTab() {
+        console.log("ClothesTab");
         return (
             <View style={styles.tabContainer}>
                 <FlatList
@@ -91,6 +174,7 @@ export default function RecentlyDeletedPage() {
     }
 
     function OutfitsTab() {
+        console.log("OutfitsTab");
         return (
             <View style={styles.tabContainer}>
                 <FlatList
@@ -98,62 +182,57 @@ export default function RecentlyDeletedPage() {
                     keyExtractor={(item) => item.id}
                     horizontal={false}
                     numColumns={NUM_COLUMNS}
-                    renderItem={RenderItem}
+                    renderItem={RenderOutfit}
                     ListEmptyComponent={EmptyList("outfits")}
                 />
             </View>
         );
     }
 
-    // TODO: only run the function relevant to the current tab
     const ToggleSelect = () => {
+        console.log("ToggleSelect");
         if (Select) {
-            const newClothes = Clothes.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setClothes(newClothes);
-            const newOutfits = Outfits.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setOutfits(newOutfits);
+            setSelected([]);
         }
         setSelect(!Select);
     };
 
-    // TODO: only run the function relevant to the current tab
     const SelectItem = (target) => {
-        const newClothes = Clothes.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setClothes(newClothes);
-        const newOutfits = Outfits.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setOutfits(newOutfits);
+        console.log("SelectItem");
+        setSelected([...Selected, target.id]);
     };
 
     // TODO: only run the function relevant to the current tab
     const DeleteItems = () => {
-        const newClothes = Clothes.filter((item) => !item.selected);
-        setClothes(newClothes);
-        const newOutfits = Outfits.filter((item) => !item.selected);
-        setOutfits(newOutfits);
-        setSelect(false);
+        console.log("DeleteItems");
+        if (Selected.length > 0) {
+            updateClothesData(
+                clothesData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: null,
+                        };
+                    }
+                    return item;
+                })
+            );
+            updateOutfitsData(
+                outfitsData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: null,
+                        };
+                    }
+                    return item;
+                })
+            );
+        }
     };
 
     useEffect(() => {
+        console.log("useEffect");
         if (Select) {
             navigation.setOptions({
                 headerLeft: () => (

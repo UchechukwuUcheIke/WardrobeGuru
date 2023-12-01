@@ -1,0 +1,68 @@
+[
+    {
+        "id": 1,
+        "dateAdded": "2023-11-29",
+        "dateLastWorn": "2023-11-29",
+        "dateDeleted": "2023-11-29",
+        "timesWorn": 8,
+        "clothingIds": [99, 21, 64, 39],
+        "formalityRatingAvg": 2,
+        "warmthRatingAvg": 1,
+        "ownedByUser": true
+    },
+    {
+        "id": 2,
+        "dateAdded": "2023-11-29",
+        "dateLastWorn": "2023-11-29",
+        "dateDeleted": null,
+        "timesWorn": 8,
+        "clothingIds": [95, 22, 63, 40],
+        "formalityRatingAvg": 1,
+        "warmthRatingAvg": 1,
+        "ownedByUser": true
+    },
+    {
+        "id": 3,
+        "dateAdded": "2023-11-29",
+        "dateLastWorn": "2023-11-29",
+        "dateDeleted": null,
+        "timesWorn": 8,
+        "clothingIds": [97, 25, 62, 41],
+        "formalityRatingAvg": 1,
+        "warmthRatingAvg": 1,
+        "ownedByUser": true
+    },
+    {
+        "id": 4,
+        "dateAdded": "2023-11-29",
+        "dateLastWorn": "2023-11-29",
+        "dateDeleted": null,
+        "timesWorn": 8,
+        "clothingIds": [98, 25, 66, 43],
+        "formalityRatingAvg": 1,
+        "warmthRatingAvg": 1,
+        "ownedByUser": true
+    },
+    {
+        "id": 5,
+        "dateAdded": "2023-11-29",
+        "dateLastWorn": "2023-11-29",
+        "dateDeleted": null,
+        "timesWorn": 8,
+        "clothingIds": [95, 26, 60, 45],
+        "formalityRatingAvg": 1,
+        "warmthRatingAvg": 1,
+        "ownedByUser": true
+    },
+    {
+        "id": 7,
+        "dateAdded": "2023-11-29",
+        "dateLastWorn": "2023-11-29",
+        "dateDeleted": null,
+        "timesWorn": 8,
+        "clothingIds": [93, 27, 62, 48],
+        "formalityRatingAvg": 1,
+        "warmthRatingAvg": 1,
+        "ownedByUser": true
+    }
+]

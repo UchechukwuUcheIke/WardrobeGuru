@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
@@ -7,19 +8,40 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Image,
     FlatList,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import Data from "../assets/data/saved_outfits.json";
+import OutfitDisplay from "../Component/OutfitDisplay";
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function OutfitPage() {
+function SortMostRecent(a, b) {
+    const dateA = new Date(a.dateAdded);
+    const dateB = new Date(b.dateAdded);
+
+    if (dateA > dateB) {
+        return -1;
+    }
+    if (dateA < dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+export default function OutfitsPage({
+    clothesData,
+    outfitsData,
+    updateOutfitsData,
+}) {
+    const Outfits = outfitsData
+        .filter((item) => item.dateDeleted === null)
+        .sort(SortMostRecent);
+
     const [Select, setSelect] = useState(false);
-    const [Outfits, setOutfits] = useState(Data.Outfits);
+    const [Selected, setSelected] = useState([]);
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
@@ -30,22 +52,26 @@ export default function OutfitPage() {
                         style={styles.selectButton}
                         onPress={() => SelectItem(item)}
                     >
-                        <Image
-                            source={{ uri: item.url }}
-                            style={{
-                                width: 140,
-                                height: 140,
-                                margin: "2.5%",
-                                borderWidth: item.selected ? 3 : 0,
-                                borderColor: "#33A8FF",
-                            }}
+                        <OutfitDisplay
+                            style={[
+                                styles.OutfitDisplay,
+                                {
+                                    borderWidth: Selected.includes(item.id)
+                                        ? 3
+                                        : 0,
+                                    borderColor: "#33A8FF",
+                                },
+                            ]}
+                            outfit={item}
+                            clothesData={clothesData}
                         />
                     </TouchableOpacity>
                 ) : (
                     <TouchableOpacity style={styles.selectButton}>
-                        <Image
-                            source={{ uri: item.url }}
-                            style={styles.image}
+                        <OutfitDisplay
+                            style={styles.OutfitDisplay}
+                            outfit={item}
+                            clothesData={clothesData}
                         />
                     </TouchableOpacity>
                 )}
@@ -56,8 +82,8 @@ export default function OutfitPage() {
     RenderItem.propTypes = {
         item: PropTypes.arrayOf(
             PropTypes.shape({
-                url: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
+                imageUrl: PropTypes.string.isRequired,
+                ownedByUser: PropTypes.bool.isRequired,
             })
         ).isRequired,
     };
@@ -88,31 +114,29 @@ export default function OutfitPage() {
 
     const ToggleSelect = () => {
         if (Select) {
-            const newOutfits = Outfits.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setOutfits(newOutfits);
+            setSelected([]);
         }
         setSelect(!Select);
     };
 
     const SelectItem = (target) => {
-        const newOutfits = Outfits.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setOutfits(newOutfits);
+        setSelected([...Selected, target.id]);
     };
 
     const DeleteItems = () => {
-        const newOutfits = Outfits.filter((item) => !item.selected);
-        setOutfits(newOutfits);
-        setSelect(false);
+        if (Selected.length > 0) {
+            updateOutfitsData(
+                outfitsData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: new Date().toJSON(),
+                        };
+                    }
+                    return item;
+                })
+            );
+        }
     };
 
     const AddItems = () => {
@@ -163,6 +187,10 @@ const styles = StyleSheet.create({
     },
     tab: {
         padding: 10,
+    },
+    OutfitDisplay: {
+        width: 140,
+        height: 560,
     },
     image: {
         width: 140,
