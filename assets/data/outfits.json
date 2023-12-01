@@ -8,8 +8,7 @@
         "clothingIds": [21, 1, 11, 25],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 2,
@@ -20,8 +19,7 @@
         "clothingIds": [20, 2, 11, 25],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 3,
@@ -32,8 +30,7 @@
         "clothingIds": [19, 1, 18, 27],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 4,
@@ -44,8 +41,7 @@
         "clothingIds": [20, 3, 13, 27],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 5,
@@ -56,8 +52,7 @@
         "clothingIds": [22, 4, 12, 25],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 6,
@@ -68,8 +63,7 @@
         "clothingIds": [21, 5, 12, 26],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 7,
@@ -80,8 +74,7 @@
         "clothingIds": [23, 2, 16, 25],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 8,
@@ -92,7 +85,6 @@
         "clothingIds": [19, 6, 15, 26],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     }
 ]

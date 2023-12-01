@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
@@ -12,16 +13,38 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import Data from "../assets/data/outfits.json";
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function OutfitsPage() {
+function SortMostRecent(a, b) {
+    const dateA = new Date(a.dateAdded);
+    const dateB = new Date(b.dateAdded);
+
+    if (dateA > dateB) {
+        return -1;
+    }
+    if (dateA < dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+export default function OutfitsPage({
+    clothesData,
+    outfitsData,
+    updateOutfitsData,
+}) {
+    const Outfits = outfitsData
+        .filter((item) => item.dateDeleted === null && item.ownedByUser)
+        .sort(SortMostRecent);
+
     const [Select, setSelect] = useState(false);
-    const [Outfits, setOutfits] = useState(Data.Outfits);
+    const [Selected, setSelected] = useState([]);
+
     const navigation = useNavigation();
 
+    // TODO: Update this to use OutfitDisplay instead of Image (whether select is enabled or not)
     function RenderItem({ item }) {
         return (
             <View style={{ marginTop: 10, padding: 20 }}>
@@ -31,12 +54,12 @@ export default function OutfitsPage() {
                         onPress={() => SelectItem(item)}
                     >
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: clothesData[0].imageUrl }}
                             style={{
                                 width: 140,
                                 height: 140,
                                 margin: "2.5%",
-                                borderWidth: item.selected ? 3 : 0,
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
                             resizeMode="contain"
@@ -45,7 +68,7 @@ export default function OutfitsPage() {
                 ) : (
                     <TouchableOpacity style={styles.selectButton}>
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: clothesData[0].imageUrl }}
                             style={styles.image}
                             resizeMode="contain"
                         />
@@ -58,8 +81,8 @@ export default function OutfitsPage() {
     RenderItem.propTypes = {
         item: PropTypes.arrayOf(
             PropTypes.shape({
-                url: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
+                imageUrl: PropTypes.string.isRequired,
+                ownedByUser: PropTypes.bool.isRequired,
             })
         ).isRequired,
     };
@@ -90,31 +113,27 @@ export default function OutfitsPage() {
 
     const ToggleSelect = () => {
         if (Select) {
-            const newOutfits = Outfits.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setOutfits(newOutfits);
+            setSelected([]);
         }
         setSelect(!Select);
     };
 
     const SelectItem = (target) => {
-        const newOutfits = Outfits.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setOutfits(newOutfits);
+        setSelected([...Selected, target.id]);
     };
 
     const DeleteItems = () => {
-        const newOutfits = Outfits.filter((item) => !item.selected);
-        setOutfits(newOutfits);
-        setSelect(false);
+        updateOutfitsData(
+            outfitsData.map((item) => {
+                if (Selected.includes(item.id)) {
+                    return {
+                        ...item,
+                        dateDeleted: new Date().toJSON(),
+                    };
+                }
+                return item;
+            })
+        );
     };
 
     const AddItems = () => {
