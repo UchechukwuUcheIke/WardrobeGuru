@@ -8,11 +8,11 @@ import {
     Text,
     StyleSheet,
     TouchableOpacity,
-    Image,
     FlatList,
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
+import OutfitDisplay from "../Component/OutfitDisplay";
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
@@ -53,24 +53,26 @@ export default function OutfitsPage({
                         style={styles.selectButton}
                         onPress={() => SelectItem(item)}
                     >
-                        <Image
-                            source={{ uri: clothesData[0].imageUrl }}
-                            style={{
-                                width: 140,
-                                height: 140,
-                                margin: "2.5%",
-                                borderWidth: Selected.includes(item.id) ? 3 : 0,
-                                borderColor: "#33A8FF",
-                            }}
-                            resizeMode="contain"
+                        <OutfitDisplay
+                            style={[
+                                styles.OutfitDisplay,
+                                {
+                                    borderWidth: Selected.includes(item.id)
+                                        ? 3
+                                        : 0,
+                                    borderColor: "#33A8FF",
+                                },
+                            ]}
+                            outfit={item}
+                            clothesData={clothesData}
                         />
                     </TouchableOpacity>
                 ) : (
                     <TouchableOpacity style={styles.selectButton}>
-                        <Image
-                            source={{ uri: clothesData[0].imageUrl }}
-                            style={styles.image}
-                            resizeMode="contain"
+                        <OutfitDisplay
+                            style={styles.OutfitDisplay}
+                            outfit={item}
+                            clothesData={clothesData}
                         />
                     </TouchableOpacity>
                 )}
@@ -184,6 +186,10 @@ const styles = StyleSheet.create({
     },
     tab: {
         padding: 10,
+    },
+    OutfitDisplay: {
+        width: 140,
+        height: 560,
     },
     image: {
         width: 140,

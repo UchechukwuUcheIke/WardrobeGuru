@@ -17,7 +17,7 @@ export default function HomePage({
     updateClothesData,
 }) {
     // 4 item array that contains the URL strings of all the outfits
-    const [outfitId, setOutfitId] = useState(0);
+    const [outfit, setOutfit] = useState(outfitsData[0]);
     const confettiRef = useRef(null);
 
     function handleChangeOutfit() {
@@ -25,14 +25,12 @@ export default function HomePage({
         // Pick random idx from 0 to the number of outfits
         const idx = Math.floor(Math.random() * (numOutfits - 1));
 
-        setOutfitId(idx);
+        setOutfit(outfitsData[idx]);
     }
 
     // Function invoked when user clicks "Looks good to me"
     // Begins the confetti animation and updates the "Last worn attribute of all clothes"
     function handleConfirmOutfit() {
-        const outfit = outfitsData[outfitId];
-
         const hatId = outfit.clothingIds[0];
         const topId = outfit.clothingIds[1];
         const bottomId = outfit.clothingIds[2];
@@ -93,8 +91,7 @@ export default function HomePage({
 
             <OutfitDisplay
                 style={styles.OutfitDisplay}
-                outfitId={outfitId}
-                outfitsData={outfitsData}
+                outfit={outfit}
                 clothesData={clothesData}
             />
 

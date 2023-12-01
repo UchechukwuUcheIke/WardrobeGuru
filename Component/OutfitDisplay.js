@@ -4,10 +4,8 @@
 
 import React from "react";
 import { StyleSheet, Image, View } from "react-native";
-import PropTypes from "prop-types";
 
-export default function OutfitDisplay({ outfitId, outfitsData, clothesData }) {
-    const outfit = outfitsData[outfitId];
+export default function OutfitDisplay({ outfit, clothesData }) {
     const hatId = outfit.clothingIds[0];
     const topId = outfit.clothingIds[1];
     const bottomId = outfit.clothingIds[2];
@@ -81,15 +79,3 @@ const styles = StyleSheet.create({
         marginBottom: "1%",
     },
 });
-
-OutfitDisplay.propTypes = {
-    outfitId: PropTypes.number,
-    outfitsData: PropTypes.array,
-    clothesData: PropTypes.array,
-};
-
-OutfitDisplay.defaultProps = {
-    outfitId: 0,
-    outfitsData: [],
-    clothesData: [],
-};
