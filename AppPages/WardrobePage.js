@@ -181,17 +181,19 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
     };
 
     const DeleteItems = () => {
-        updateClothesData(
-            clothesData.map((item) => {
-                if (Selected.includes(item.id)) {
-                    return {
-                        ...item,
-                        dateDeleted: new Date().toJSON(),
-                    };
-                }
-                return item;
-            })
-        );
+        if (Selected.length > 0) {
+            updateClothesData(
+                clothesData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: new Date().toJSON(),
+                        };
+                    }
+                    return item;
+                })
+            );
+        }
     };
 
     function showModal() {

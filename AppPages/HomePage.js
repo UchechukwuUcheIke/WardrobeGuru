@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
@@ -16,35 +17,52 @@ export default function HomePage({
     updateClothesData,
 }) {
     // 4 item array that contains the URL strings of all the outfits
-    const [outfit, setOutfit] = useState(outfitsData[0]);
+    const [formalityLevel, setFormalityLevel] = useState(3);
+    const [outfit, setOutfit] = useState({});
     const confettiRef = useRef(null);
 
     function handleChangeOutfit() {
-        const numOutfits = outfitsData.length;
-        // Pick random idx from 0 to the number of outfits
-        const idx = Math.floor(Math.random() * (numOutfits - 1));
+        const lastId = outfit.id;
+        let idx = 0;
+        let attempts = 0;
+        do {
+            idx = Math.floor(Math.random() * (outfitsData.length - 1));
+            attempts += 1;
+        } while (
+            (attempts < 20 &&
+                Math.abs(formalityLevel - outfitsData[idx].formalityRatingAvg) >
+                    1) ||
+            outfitsData[idx].id === lastId
+        );
 
-        setOutfit(outfitsData[idx]);
+        if (attempts < 20) {
+            setOutfit(outfitsData[idx]);
+        } else {
+            setOutfit({});
+        }
     }
+
+    const handleFormalityChange = (value) => {
+        setFormalityLevel(value);
+    };
 
     // Function invoked when user clicks "Looks good to me"
     // Begins the confetti animation and updates the "Last worn attribute of all clothes"
     function handleConfirmOutfit() {
-        const hatId = outfit.clothingIds[0];
-        const topId = outfit.clothingIds[1];
-        const bottomId = outfit.clothingIds[2];
-        const shoeId = outfit.clothingIds[3];
+        if (outfit.length > 0) {
+            const hatId = outfit.clothingIds[0];
+            const topId = outfit.clothingIds[1];
+            const bottomId = outfit.clothingIds[2];
+            const shoeId = outfit.clothingIds[3];
 
-        // Set the last worn attribute for all clothes
-        clothesData.forEach((clothes) => {
-            const clothesId = clothes.id;
+            // Set the last worn attribute for all clothes
             updateClothesData(
                 clothesData.map((item) => {
                     if (
-                        clothesId === hatId ||
-                        clothesId === topId ||
-                        clothesId === bottomId ||
-                        clothesId === shoeId
+                        item.id === hatId ||
+                        item.id === topId ||
+                        item.id === bottomId ||
+                        item.id === shoeId
                     ) {
                         return {
                             ...item,
@@ -55,12 +73,12 @@ export default function HomePage({
                     return item;
                 })
             );
-        });
+        }
     }
 
     useEffect(() => {
         handleChangeOutfit();
-    });
+    }, []);
 
     // Sprays confetti on screen after user has picked out an outfit
     useEffect(() => {
@@ -88,19 +106,31 @@ export default function HomePage({
                 </Text>
             </View>
 
-            <OutfitDisplay
-                style={styles.OutfitDisplay}
-                outfit={outfit}
-                clothesData={clothesData}
-            />
+            <View style={styles.mainContainer}>
+                {Object.keys(outfit).length > 0 ? (
+                    <OutfitDisplay
+                        style={styles.OutfitDisplay}
+                        outfit={outfit}
+                        clothesData={clothesData}
+                    />
+                ) : (
+                    <Text style={styles.subheading}>
+                        {" "}
+                        {`There aren't any more saved outfits that match your needs. Please try moving the slider or generating more outfits!`}{" "}
+                    </Text>
+                )}
+            </View>
 
             <View style={styles.optionsContainer}>
                 <Slider
-                    style={{ width: "50%", height: 40 }}
-                    minimumValue={0}
-                    maximumValue={1}
-                    minimumTrackTintColor="#734F96"
+                    style={{ width: 150, height: 40 }}
+                    minimumValue={1}
+                    maximumValue={5}
+                    step={1}
+                    value={formalityLevel}
+                    minimumTrackTintColor="#81b0ff"
                     maximumTrackTintColor="#000000"
+                    onSlidingComplete={handleFormalityChange}
                 />
 
                 <TextButton
@@ -127,8 +157,15 @@ const styles = StyleSheet.create({
         height: "100%",
     },
     headingContainer: {
+        marginTop: 20,
+        marginBottom: -10,
         width: "100%",
         height: "20%",
+    },
+    mainContainer: {
+        width: "60%",
+        alignItems: "center",
+        height: "100%",
     },
     heading: {
         color: "black",
@@ -145,6 +182,7 @@ const styles = StyleSheet.create({
         height: "50%",
     },
     optionsContainer: {
+        marginTop: -420,
         width: "100%",
         height: "30%",
         alignItems: "center",

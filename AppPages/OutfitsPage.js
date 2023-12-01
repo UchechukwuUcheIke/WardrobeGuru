@@ -125,17 +125,19 @@ export default function OutfitsPage({
     };
 
     const DeleteItems = () => {
-        updateOutfitsData(
-            outfitsData.map((item) => {
-                if (Selected.includes(item.id)) {
-                    return {
-                        ...item,
-                        dateDeleted: new Date().toJSON(),
-                    };
-                }
-                return item;
-            })
-        );
+        if (Selected.length > 0) {
+            updateOutfitsData(
+                outfitsData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: new Date().toJSON(),
+                        };
+                    }
+                    return item;
+                })
+            );
+        }
     };
 
     const AddItems = () => {

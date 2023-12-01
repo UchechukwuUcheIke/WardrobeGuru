@@ -43,6 +43,7 @@ export default function RecentlyDeletedPage({
     updateClothesData,
     updateOutfitsData,
 }) {
+    console.log("Render");
     const Clothes = clothesData
         .filter(
             (item) =>
@@ -64,6 +65,7 @@ export default function RecentlyDeletedPage({
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
+        console.log("RenderItem");
         return (
             <View style={{ marginTop: 10, padding: 20 }}>
                 {Select ? (
@@ -106,6 +108,7 @@ export default function RecentlyDeletedPage({
 
     // TODO: Update this to use OutfitDisplay instead of Image (whether select is enabled or not)
     function RenderOutfit({ item }) {
+        console.log("RenderOutfit");
         return (
             <View style={{ marginTop: 10, padding: 20 }}>
                 {Select ? (
@@ -148,12 +151,14 @@ export default function RecentlyDeletedPage({
     };
 
     function EmptyList(items) {
+        console.log("EmptyList");
         return (
             <Text style={styles.empty}>No recently deleted {items} found.</Text>
         );
     }
 
     function ClothesTab() {
+        console.log("ClothesTab");
         return (
             <View style={styles.tabContainer}>
                 <FlatList
@@ -169,6 +174,7 @@ export default function RecentlyDeletedPage({
     }
 
     function OutfitsTab() {
+        console.log("OutfitsTab");
         return (
             <View style={styles.tabContainer}>
                 <FlatList
@@ -184,6 +190,7 @@ export default function RecentlyDeletedPage({
     }
 
     const ToggleSelect = () => {
+        console.log("ToggleSelect");
         if (Select) {
             setSelected([]);
         }
@@ -191,11 +198,13 @@ export default function RecentlyDeletedPage({
     };
 
     const SelectItem = (target) => {
+        console.log("SelectItem");
         setSelected([...Selected, target.id]);
     };
 
     // TODO: only run the function relevant to the current tab
     const DeleteItems = () => {
+        console.log("DeleteItems");
         if (Selected.length > 0) {
             updateClothesData(
                 clothesData.map((item) => {
@@ -223,6 +232,7 @@ export default function RecentlyDeletedPage({
     };
 
     useEffect(() => {
+        console.log("useEffect");
         if (Select) {
             navigation.setOptions({
                 headerLeft: () => (
