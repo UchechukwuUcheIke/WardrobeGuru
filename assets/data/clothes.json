@@ -6,7 +6,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://aritzia.scene7.com/is/image/Aritzia/f21_02_a03_95145_15104_off_a?wid=1200",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -19,7 +19,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.filippa-k.com/dw/image/v2/BFNP_PRD/on/demandware.static/-/Sites-filippa-k-master-catalog/default/dw9a58f09e/hi-res/29597-9701-F22-F-20.jpg?sw=1013&sh=1520&sm=cut&sfrm=jpg",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -32,7 +32,7 @@
         "dateLastWorn": "2023-11-23T06:00:00.000Z",
         "timesWorn": 0,
         "imageUrl": "https://cdni.llbean.net/is/image/wim/519581_462_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/519581_462_41",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -45,7 +45,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1484074_lifestyle?$rl_df_pdp_5_7_lif$",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -58,7 +58,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1485485_lifestyle?$plpDeskRF$",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -71,10 +71,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07829036_2610_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -84,7 +84,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07839221_0058_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 2,
         "ownedByUser": true,
@@ -97,10 +97,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07839577_0058_a001?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -110,10 +110,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07822199_2915_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -123,10 +123,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://lp2.hm.com/hmgoepprod?set=source%255B/b0/bb/b0bb1b7ddbde979d1cd81a36e35cf2b02855f1d6.jpg%255D,origin%255Bdam%255D,category%255B%255D,type%255BDESCRIPTIVESTILLLIFE%255D,res%255Bz%255D,hmver%255B2%255D&call=url%255Bfile:/product/main%255D%5C",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -136,10 +136,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1483722_lifestyle?$rl_df_pdp_5_7_lif$",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -149,7 +149,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1421254_lifestyle?$rl_df_pdp_5_7_lif$",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -162,10 +162,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1295910_lifestyle?$plpDeskRF$",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -175,7 +175,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.helikon-tex.com/media/catalog/product/cache/4/image/9df78eab33525d08d6e5fb8d27136e95/T/S/TS-TSW-CO-t-shirt_damski_-_bawena-11-1000_1.jpg",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
         "ownedByUser": true,
@@ -188,10 +188,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://assets.vogue.com/photos/63923fc3ab0eb80c9ce1301f/3:4/w_748%2Cc_limit/slide_5.jpg",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -201,7 +201,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.footballfanatics.com/illinois-fighting-illini/womens-league-collegiate-wear-white-illinois-fighting-illini-intramural-midi-tri-blend-t-shirt_ss5_p-200326050+u-hz6lqhtbouexsgf9za9r+v-cmspwnfndkppymo4yqlp.jpg?_hv=2&w=900",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
         "ownedByUser": true,
@@ -214,7 +214,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.footballfanatics.com/illinois-fighting-illini/womens-league-collegiate-wear-heather-gray-illinois-fighting-illini-intramural-boyfriend-tri-blend-v-neck-t-shirt_ss5_p-200325493+u-fyl6z0jwjjg7i5wt43xq+v-schpjc2duyeauit33vfc.jpg?_hv=2&w=900",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
         "ownedByUser": true,
@@ -227,10 +227,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTiZluvGah8i_c999SWMsoFHuZPWZvjyNpzjgnfFGbRi6eWWvLkXhGVXNInSXGUu431aCI&usqp=CAU",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -240,7 +240,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://n.nordstrommedia.com/id/sr3/dca82816-91cc-41e6-b437-b4ea0e91a2fc.jpeg?h=365&w=240&dpr=2",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
         "ownedByUser": true,
@@ -253,10 +253,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://ae01.alicdn.com/kf/S52d3c73764ea403f97f1964022474598S/new-top-Cardigan-V-neck-Noah-Sweatshirts-Men-Women-1-1-High-Quality-Embroidery-Noah-Logo.jpg",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -266,7 +266,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.footballfanatics.com/illinois-fighting-illini/womens-league-collegiate-wear-ash-illinois-fighting-illini-1636-boxy-pullover-sweatshirt_ss5_p-200326451+u-5cbxyu0rctp4esnyreyv+v-jcqddjm3s1ansjr039m9.jpg?_hv=2&w=900",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 3,
         "ownedByUser": true,
@@ -279,10 +279,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0097_09700164_0011_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 2,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -292,7 +292,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0097_09709996_2610_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 2,
         "ownedByUser": true,
@@ -305,10 +305,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0097_09709810_2610_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 3,
         "warmthRating": 2,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -318,7 +318,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1484502_lifestyle?$plpDeskRF$",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 2,
         "ownedByUser": true,
@@ -331,10 +331,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0086_09616538_0834_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -344,7 +344,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0086_06418421_0121_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
         "ownedByUser": true,
@@ -357,7 +357,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0086_09611228_2915_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 2,
         "ownedByUser": true,
@@ -370,10 +370,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://images.express.com/is/image/expressfashion/0086_06410562_0058_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -383,7 +383,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://pdimg-prod-fmv3.findmine.com/v3/f243e5e2-792b-49c4-8130-85103d7c734e/37bcd8e0-8d14-484d-b56a-b46ce7c36e00.xl.png",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -396,7 +396,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://m.media-amazon.com/images/I/812B6tNnOgL._AC_SX679_.jpg",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 5,
         "ownedByUser": true,
@@ -409,10 +409,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://cdn.saksfifthavenue.com/is/image/saks/0400018318224_MEUSEWASH?wid=484&hei=646&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -422,7 +422,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTtSUTPxUg_LJjwNySmlWVBnBQtV36mjPDmAsIXiZ4BDpnSJpHGBlqPU-5m_TVl5isoxO0&usqp=CAU",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 4,
         "ownedByUser": true,
@@ -435,10 +435,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://lsco.scene7.com/is/image/lsco/A32350007-front-gstk?fmt=jpeg&qlt=70&resMode=bisharp&fit=crop,0&op_usm=1.25,0.6,8&wid=2000&hei=1800",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -448,7 +448,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://cdn.saksfifthavenue.com/is/image/saks/0400012088924_CAMEL?wid=484&hei=646&qlt=90&resMode=sharp2&op_usm=0.9,1.0,8,0",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 4,
         "warmthRating": 3,
         "ownedByUser": true,
@@ -461,10 +461,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://cdni.llbean.net/is/image/wim/260344_2772_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/260344_2772_41",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 5,
         "warmthRating": 4,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -474,10 +474,10 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://cdni.llbean.net/is/image/wim/227260_524_41?hei=764&wid=665&resMode=sharp2&defaultImage=llbprod/227260_524_41",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": true,
+        "ownedByUser": false,
         "selected": false
     },
     {
@@ -487,7 +487,7 @@
         "dateLastWorn": null,
         "timesWorn": 0,
         "imageUrl": "https://img.abercrombie.com/is/image/anf/KIC_144-3303-0034-900_prod1.jpg?policy=product-large",
-        "category": "top",
+        "category": "tops",
         "formalityRating": 5,
         "warmthRating": 3,
         "ownedByUser": true,
@@ -659,7 +659,7 @@
         "category": "bottoms",
         "formalityRating": 5,
         "warmthRating": 5,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -672,7 +672,7 @@
         "category": "bottoms",
         "formalityRating": 5,
         "warmthRating": 5,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -685,7 +685,7 @@
         "category": "bottoms",
         "formalityRating": 4,
         "warmthRating": 5,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -737,7 +737,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -750,7 +750,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -776,7 +776,7 @@
         "category": "bottoms",
         "formalityRating": 3,
         "warmthRating": 5,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -802,7 +802,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 3,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -815,7 +815,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -828,7 +828,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -854,7 +854,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -880,7 +880,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -906,7 +906,7 @@
         "category": "bottoms",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -932,7 +932,7 @@
         "category": "bottoms",
         "formalityRating": 4,
         "warmthRating": 2,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -984,7 +984,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1010,7 +1010,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 2,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1023,7 +1023,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1075,7 +1075,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1114,7 +1114,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 4,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1179,7 +1179,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1231,7 +1231,7 @@
         "category": "accessories",
         "formalityRating": 5,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1270,7 +1270,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
@@ -1283,7 +1283,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
+        "ownedByUser": true,
         "selected": false
     },
     {
