@@ -56,6 +56,8 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
     const [isEditModalVisible, setIsEditModalVisible] = useState(false);
     const [currentItem, setCurrentItem] = useState(clothesData[0]); // The item currently being edited
 
+    const [editMode, setEditMode] = useState(false);
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
@@ -79,7 +81,10 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
                         />
                     </TouchableOpacity>
                 ) : (
-                    <TouchableOpacity style={styles.selectButton}>
+                    <TouchableOpacity
+                        style={styles.selectButton}
+                        onPress={() => showItemDetail(item)}
+                    >
                         <Image
                             source={{ uri: item.imageUrl }}
                             style={styles.image}
@@ -208,6 +213,16 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
         showModal();
     };
 
+    const showItemDetail = (item) => {
+        setCurrentItem(item);
+        setEditMode(false);
+        setIsEditModalVisible(true);
+    };
+
+    const toggleEditMode = () => {
+        setEditMode(!editMode);
+    };
+
     useEffect(() => {
         if (Select) {
             navigation.setOptions({
@@ -262,6 +277,7 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
             hideModal();
             setAdding(false);
             setCurrentItem(newItem); // Set the new item as the current item
+            setEditMode(true);
             setIsEditModalVisible(true); // Show the edit modal
         }, 2000); // Simulate loading for 2 seconds
     }
@@ -273,9 +289,24 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
         }, 1000);
     }
 
-    // Define a function to handle saving the edited item
+    // const handleSaveItem = (editedItem) => {
+    //     setTops((prevItems) => [editedItem, ...prevItems]);
+    //     setIsEditModalVisible(false); // Hide the edit modal
+    // };
+
     const handleSaveItem = (editedItem) => {
-        updateClothesData([...clothesData, editedItem]);
+        const index = clothesData.findIndex(
+            (item) => item.id === editedItem.id
+        );
+        if (index >= 0) {
+            // update existing item
+            const temp = [...clothesData];
+            temp[index] = editedItem;
+            updateClothesData(temp);
+        } else {
+            // add new item
+            updateClothesData([...clothesData, editedItem]);
+        }
     };
 
     return (
@@ -316,6 +347,8 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
                 onClose={() => setIsEditModalVisible(false)}
                 onSave={handleSaveItem}
                 item={currentItem}
+                editMode={editMode} // Pass this state down to the modal
+                toggleEditMode={toggleEditMode}
             />
         </View>
     );
