@@ -217,24 +217,16 @@ export default function WardrobePage() {
         setShoes(newShoes);
     };
 
-    const DeleteItems = (itemToDelete) => {
-        if (itemToDelete) {
-            // Logic for deleting a single item
-            setTops((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
-            setBottoms((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
-            setAccessories((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
-            setShoes((prevItems) => prevItems.filter((item) => item.id !== itemToDelete.id));
-        } else {
-            const newTops = Tops.filter((item) => !item.selected);
-            setTops(newTops);
-            const newBottoms = Bottoms.filter((item) => !item.selected);
-            setBottoms(newBottoms);
-            const newAccessories = Accessories.filter((item) => !item.selected);
-            setAccessories(newAccessories);
-            const newShoes = Shoes.filter((item) => !item.selected);
-            setShoes(newShoes);
-            setSelect(false);
-        }
+    const DeleteItems = () => {
+        const newTops = Tops.filter((item) => !item.selected);
+        setTops(newTops);
+        const newBottoms = Bottoms.filter((item) => !item.selected);
+        setBottoms(newBottoms);
+        const newAccessories = Accessories.filter((item) => !item.selected);
+        setAccessories(newAccessories);
+        const newShoes = Shoes.filter((item) => !item.selected);
+        setShoes(newShoes);
+        setSelect(false);
     };
 
     function showModal() {
