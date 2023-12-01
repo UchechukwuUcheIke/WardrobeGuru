@@ -5,7 +5,7 @@
 import React from "react";
 import { StyleSheet, Image, View } from "react-native";
 
-export default function OutfitDisplay({ outfit, clothesData }) {
+export default function OutfitDisplay({ outfit, clothesData, style }) {
     const hatId = outfit.clothingIds[0];
     const topId = outfit.clothingIds[1];
     const bottomId = outfit.clothingIds[2];
@@ -34,7 +34,7 @@ export default function OutfitDisplay({ outfit, clothesData }) {
     });
 
     return (
-        <View style={styles.displayStyle}>
+        <View style={style}>
             <Image
                 style={styles.image}
                 source={{

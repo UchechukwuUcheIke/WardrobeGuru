@@ -45,10 +45,11 @@ export default function GeneratorPage({ clothesData, outfitsData }) {
             <View style={styles.featureRow}>
                 <Text style={styles.label}>Casual</Text>
                 <Slider
-                    style={{ width: "40%", height: 40 }}
+                    style={{ width: "60%", height: 40 }}
                     minimumValue={0}
                     maximumValue={1}
-                    minimumTrackTintColor="#734F96"
+                    minimumTrackTintColor="#8088E9"
+                    thumbTintColor="#888888"
                     maximumTrackTintColor="#000000"
                     // onValueChange={handleFormalityChange}
                 />
@@ -88,6 +89,7 @@ const styles = StyleSheet.create({
         justifyContent: "space-between",
         alignItems: "center",
         marginBottom: 5,
+        width: "60%",
     },
     OutfitDisplay: {
         width: "50%",

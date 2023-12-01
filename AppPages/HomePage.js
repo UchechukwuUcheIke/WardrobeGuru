@@ -18,6 +18,7 @@ export default function HomePage({
 }) {
     // 4 item array that contains the URL strings of all the outfits
     const [outfit, setOutfit] = useState(outfitsData[0]);
+    
     const confettiRef = useRef(null);
 
     function handleChangeOutfit() {
@@ -59,16 +60,13 @@ export default function HomePage({
         });
     }
 
-    useEffect(() => {
-        handleChangeOutfit();
-    }, []);
 
     // Sprays confetti on screen after user has picked out an outfit
     useEffect(() => {
         if (confettiRef.current) {
             confettiRef.current.start();
         }
-    }, [updateClothesData]);
+    }, [clothesData]);
 
     return [
         <ConfettiCannon
@@ -96,13 +94,19 @@ export default function HomePage({
             />
 
             <View style={styles.optionsContainer}>
-                <Slider
-                    style={{ width: "50%", height: 40 }}
-                    minimumValue={0}
-                    maximumValue={1}
-                    minimumTrackTintColor="#734F96"
-                    maximumTrackTintColor="#000000"
-                />
+                <View style={styles.featureRow}>
+                    <Text style={styles.label}>Casual</Text>
+                    <Slider
+                        style={{ width: "60%", height: 40 }}
+                        minimumValue={0}
+                        maximumValue={1}
+                        minimumTrackTintColor="#8088E9"
+                        thumbTintColor="#888888"
+                        maximumTrackTintColor="#000000"
+                        // onValueChange={handleFormalityChange}
+                    />
+                    <Text style={styles.label}>Formal</Text>
+                </View>
 
                 <TextButton
                     text="Looks good to me!"
@@ -131,6 +135,13 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "20%",
     },
+    featureRow: {
+        flexDirection: "row",
+        justifyContent: "space-between",
+        alignItems: "center",
+        marginBottom: 5,
+        width: "60%",
+    },
     heading: {
         color: "black",
         fontSize: 30,
@@ -149,5 +160,8 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "30%",
         alignItems: "center",
+    },
+    label: {
+        fontSize: 20,
     },
 });
