@@ -1,11 +1,86 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/no-unstable-nested-components */
+
+import React, { useState, useEffect, useRef } from "react";
 import { StyleSheet, Text, View } from "react-native";
 import Slider from "@react-native-community/slider";
+import ConfettiCannon from "react-native-confetti-cannon";
+
 import TextButton from "../Component/TextButton";
 import OutfitDisplay from "../Component/OutfitDisplay";
 
-export default function HomePage() {
-    return (
+export default function HomePage({
+    outfitsData,
+    clothesData,
+    updateClothesData,
+}) {
+    // 4 item array that contains the URL strings of all the outfits
+    const [outfitId, setOutfitId] = useState(0);
+    const confettiRef = useRef(null);
+
+    function handleChangeOutfit() {
+        const numOutfits = outfitsData.length;
+        // Pick random idx from 0 to the number of outfits
+        const idx = Math.floor(Math.random() * (numOutfits - 1));
+
+        setOutfitId(idx);
+    }
+
+    // Function invoked when user clicks "Looks good to me"
+    // Begins the confetti animation and updates the "Last worn attribute of all clothes"
+    function handleConfirmOutfit() {
+        const outfit = outfitsData[outfitId];
+
+        const hatId = outfit.clothingIds[0];
+        const topId = outfit.clothingIds[1];
+        const bottomId = outfit.clothingIds[2];
+        const shoeId = outfit.clothingIds[3];
+
+        // Set the last worn attribute for all clothes
+        clothesData.forEach((clothes) => {
+            const clothesId = clothes.id;
+            updateClothesData(
+                clothesData.map((item) => {
+                    if (
+                        clothesId === hatId ||
+                        clothesId === topId ||
+                        clothesId === bottomId ||
+                        clothesId === shoeId
+                    ) {
+                        return {
+                            ...item,
+                            dateLastWorn: new Date().toJSON(),
+                            timesWorn: item.timesWorn + 1,
+                        };
+                    }
+                    return item;
+                })
+            );
+        });
+    }
+
+    useEffect(() => {
+        handleChangeOutfit();
+    });
+
+    // Sprays confetti on screen after user has picked out an outfit
+    useEffect(() => {
+        if (confettiRef.current) {
+            confettiRef.current.start();
+        }
+    }, [updateClothesData]);
+
+    return [
+        <ConfettiCannon
+            count={200}
+            origin={{ x: -10, y: 0 }}
+            autoStart={false}
+            ref={confettiRef}
+            fadeOut
+            style={styles.container}
+        />,
+
         <View style={styles.container}>
             <View style={styles.headingContainer}>
                 <Text style={styles.heading}>Hello, Johnathan!</Text>
@@ -17,10 +92,9 @@ export default function HomePage() {
 
             <OutfitDisplay
                 style={styles.OutfitDisplay}
-                hatImgSrc="https://www.agnoulitahats.com/cdn/shop/files/DSC_0006.webp?crop=center&height=1875&v=1689711052&width=2500"
-                shirtImgSrc="https://cdn11.bigcommerce.com/s-za5m5kya2c/images/stencil/1280x1280/products/263/644/Oppenheimer_Mock_Up_Edited__64095.1691524917.png?c=1"
-                pantsImgSrc="https://static.vecteezy.com/system/resources/previews/021/809/260/original/yellow-pants-isolated-on-a-transparent-background-png.png"
-                shoesImgSrc="https://cdn.imgbin.com/13/0/11/imgbin-dress-shoe-bata-shoes-oxford-shoe-hush-puppies-sandals-86zmS8Vd1d7BKFmqv15irniAM.jpg"
+                outfitId={outfitId}
+                outfitsData={outfitsData}
+                clothesData={clothesData}
             />
 
             <View style={styles.optionsContainer}>
@@ -32,12 +106,18 @@ export default function HomePage() {
                     maximumTrackTintColor="#000000"
                 />
 
-                <TextButton text="Looks good to me!" />
+                <TextButton
+                    text="Looks good to me!"
+                    onPress={handleConfirmOutfit}
+                />
 
-                <TextButton text="Pick something else" />
+                <TextButton
+                    text="Pick something else"
+                    onPress={handleChangeOutfit}
+                />
             </View>
-        </View>
-    );
+        </View>,
+    ];
 }
 
 const styles = StyleSheet.create({

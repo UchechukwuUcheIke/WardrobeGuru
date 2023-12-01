@@ -97,6 +97,7 @@ export default function App() {
                         <HomePage
                             clothesData={clothesData}
                             outfitsData={outfitsData}
+                            updateClothesData={updateClothesData}
                         />
                     )}
                     options={{ title: "Home" }}

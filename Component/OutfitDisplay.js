@@ -1,40 +1,67 @@
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-no-bind */
+/* eslint-disable react/no-unstable-nested-components */
+
 import React from "react";
 import { StyleSheet, Image, View } from "react-native";
 import PropTypes from "prop-types";
 
-export default function OutfitDisplay({
-    hatImgSrc,
-    shirtImgSrc,
-    pantsImgSrc,
-    shoesImgSrc,
-}) {
+export default function OutfitDisplay({ outfitId, outfitsData, clothesData }) {
+    const outfit = outfitsData[outfitId];
+    const hatId = outfit.clothingIds[0];
+    const topId = outfit.clothingIds[1];
+    const bottomId = outfit.clothingIds[2];
+    const shoeId = outfit.clothingIds[3];
+
+    let hatURL = "";
+    let topURL = "";
+    let bottomURL = "";
+    let shoeURL = "";
+
+    // Iterate through outfits list and get imageURL of clothes with corresponding ids
+    clothesData.forEach((clothes) => {
+        const clothesId = clothes.id;
+        if (clothesId === hatId) {
+            hatURL = clothes.imageUrl;
+        }
+        if (clothesId === topId) {
+            topURL = clothes.imageUrl;
+        }
+        if (clothesId === bottomId) {
+            bottomURL = clothes.imageUrl;
+        }
+        if (clothesId === shoeId) {
+            shoeURL = clothes.imageUrl;
+        }
+    });
+
     return (
         <View style={styles.displayStyle}>
             <Image
                 style={styles.image}
                 source={{
-                    uri: hatImgSrc,
+                    uri: hatURL,
                 }}
                 resizeMode="contain"
             />
             <Image
                 style={styles.image}
                 source={{
-                    uri: shirtImgSrc,
+                    uri: topURL,
                 }}
                 resizeMode="contain"
             />
             <Image
                 style={styles.image}
                 source={{
-                    uri: pantsImgSrc,
+                    uri: bottomURL,
                 }}
                 resizeMode="contain"
             />
             <Image
                 style={styles.image}
                 source={{
-                    uri: shoesImgSrc,
+                    uri: shoeURL,
                 }}
                 resizeMode="contain"
             />
@@ -56,15 +83,13 @@ const styles = StyleSheet.create({
 });
 
 OutfitDisplay.propTypes = {
-    hatImgSrc: PropTypes.string,
-    shirtImgSrc: PropTypes.string,
-    pantsImgSrc: PropTypes.string,
-    shoesImgSrc: PropTypes.string,
+    outfitId: PropTypes.number,
+    outfitsData: PropTypes.array,
+    clothesData: PropTypes.array,
 };
 
 OutfitDisplay.defaultProps = {
-    hatImgSrc: " ",
-    shirtImgSrc: " ",
-    pantsImgSrc: " ",
-    shoesImgSrc: " ",
+    outfitId: 0,
+    outfitsData: [],
+    clothesData: [],
 };
