@@ -3,7 +3,7 @@
         "id": 1,
         "dateAdded": "2023-11-29",
         "dateLastWorn": "2023-11-29",
-        "dateDeleted": null,
+        "dateDeleted": "2023-11-29",
         "timesWorn": 8,
         "clothingIds": [21, 1, 11, 25],
         "formalityRatingAvg": 1,

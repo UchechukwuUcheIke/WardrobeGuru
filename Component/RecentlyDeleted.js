@@ -104,6 +104,49 @@ export default function RecentlyDeletedPage({
         ).isRequired,
     };
 
+    // TODO: Update this to use OutfitDisplay instead of Image (whether select is enabled or not)
+    function RenderOutfit({ item }) {
+        return (
+            <View style={{ marginTop: 10, padding: 20 }}>
+                {Select ? (
+                    <TouchableOpacity
+                        style={styles.selectButton}
+                        onPress={() => SelectItem(item)}
+                    >
+                        <Image
+                            source={{ uri: clothesData[0].imageUrl }}
+                            style={{
+                                width: 140,
+                                height: 140,
+                                margin: "2.5%",
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
+                                borderColor: "#33A8FF",
+                            }}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                ) : (
+                    <TouchableOpacity style={styles.selectButton}>
+                        <Image
+                            source={{ uri: clothesData[0].imageUrl }}
+                            style={styles.image}
+                            resizeMode="contain"
+                        />
+                    </TouchableOpacity>
+                )}
+            </View>
+        );
+    }
+
+    RenderOutfit.propTypes = {
+        item: PropTypes.arrayOf(
+            PropTypes.shape({
+                imageUrl: PropTypes.string.isRequired,
+                ownedByUser: PropTypes.bool.isRequired,
+            })
+        ).isRequired,
+    };
+
     function EmptyList(items) {
         return (
             <Text style={styles.empty}>No recently deleted {items} found.</Text>
@@ -133,7 +176,7 @@ export default function RecentlyDeletedPage({
                     keyExtractor={(item) => item.id}
                     horizontal={false}
                     numColumns={NUM_COLUMNS}
-                    renderItem={RenderItem}
+                    renderItem={RenderOutfit}
                     ListEmptyComponent={EmptyList("outfits")}
                 />
             </View>
@@ -153,28 +196,30 @@ export default function RecentlyDeletedPage({
 
     // TODO: only run the function relevant to the current tab
     const DeleteItems = () => {
-        updateClothesData(
-            clothesData.map((item) => {
-                if (Selected.includes(item.id)) {
-                    return {
-                        ...item,
-                        dateDeleted: null,
-                    };
-                }
-                return item;
-            })
-        );
-        updateOutfitsData(
-            outfitsData.map((item) => {
-                if (Selected.includes(item.id)) {
-                    return {
-                        ...item,
-                        dateDeleted: null,
-                    };
-                }
-                return item;
-            })
-        );
+        if (Selected.length > 0) {
+            updateClothesData(
+                clothesData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: null,
+                        };
+                    }
+                    return item;
+                })
+            );
+            updateOutfitsData(
+                outfitsData.map((item) => {
+                    if (Selected.includes(item.id)) {
+                        return {
+                            ...item,
+                            dateDeleted: null,
+                        };
+                    }
+                    return item;
+                })
+            );
+        }
     };
 
     useEffect(() => {
