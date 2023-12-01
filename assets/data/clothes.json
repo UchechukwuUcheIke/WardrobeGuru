@@ -65,10 +65,10 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07829036_2610_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0086_06341108_0121_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
-        "formalityRating": 3,
-        "warmthRating": 4,
+        "formalityRating": 2,
+        "warmthRating": 1,
         "ownedByUser": false
     },
     {
@@ -77,9 +77,9 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07839221_0058_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0097_08659936_2610_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
-        "formalityRating": 4,
+        "formalityRating": 3,
         "warmthRating": 2,
         "ownedByUser": true
     },
@@ -89,9 +89,9 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07839577_0058_a001?cache=on&wid=361&fmt=jpeg&qlt=75,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0086_09611610_0323_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
-        "formalityRating": 4,
+        "formalityRating": 2,
         "warmthRating": 1,
         "ownedByUser": false
     },
@@ -101,10 +101,10 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://images.express.com/is/image/expressfashion/0094_07822199_2915_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0086_09611208_0058_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
         "formalityRating": 3,
-        "warmthRating": 4,
+        "warmthRating": 2,
         "ownedByUser": false
     },
     {
@@ -113,9 +113,9 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://lp2.hm.com/hmgoepprod?set=source%255B/b0/bb/b0bb1b7ddbde979d1cd81a36e35cf2b02855f1d6.jpg%255D,origin%255Bdam%255D,category%255B%255D,type%255BDESCRIPTIVESTILLLIFE%255D,res%255Bz%255D,hmver%255B2%255D&call=url%255Bfile:/product/main%255D%5C",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0086_06411885_0412_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
-        "formalityRating": 3,
+        "formalityRating": 1,
         "warmthRating": 1,
         "ownedByUser": false
     },
@@ -137,10 +137,10 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1421254_lifestyle?$rl_df_pdp_5_7_lif$",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0097_08657826_0058_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
-        "formalityRating": 4,
-        "warmthRating": 4,
+        "formalityRating": 3,
+        "warmthRating": 2,
         "ownedByUser": true
     },
     {
@@ -149,10 +149,10 @@
         "dateDeleted": null,
         "dateLastWorn": null,
         "timesWorn": 0,
-        "imageUrl": "https://www.optimized-rlmedia.io/is/image/PoloGSI/s7-1295910_lifestyle?$plpDeskRF$",
+        "imageUrl": "https://images.express.com/is/image/expressfashion/0097_09718242_0001_a001?cache=on&wid=480&fmt=jpeg&qlt=85,1&resmode=sharp2&op_usm=1,1,5,0&defaultImage=Photo-Coming-Soon",
         "category": "tops",
-        "formalityRating": 4,
-        "warmthRating": 1,
+        "formalityRating": 5,
+        "warmthRating": 2,
         "ownedByUser": false
     },
     {
