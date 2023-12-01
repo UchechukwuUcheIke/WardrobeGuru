@@ -76,6 +76,7 @@ export default function App() {
                         <GeneratorPage
                             clothesData={clothesData}
                             outfitsData={outfitsData}
+                            updateOutfitsData={updateOutfitsData}
                         />
                     )}
                     options={{ title: "Outfit Generator" }}

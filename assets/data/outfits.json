@@ -27,7 +27,7 @@
         "dateLastWorn": "2023-11-29",
         "dateDeleted": null,
         "timesWorn": 8,
-        "clothingIds": [97, 24, 62, 41],
+        "clothingIds": [97, 25, 62, 41],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
         "ownedByUser": true
@@ -49,18 +49,7 @@
         "dateLastWorn": "2023-11-29",
         "dateDeleted": null,
         "timesWorn": 8,
-        "clothingIds": [88, 26, 60, 45],
-        "formalityRatingAvg": 1,
-        "warmthRatingAvg": 1,
-        "ownedByUser": true
-    },
-    {
-        "id": 6,
-        "dateAdded": "2023-11-29",
-        "dateLastWorn": "2023-11-29",
-        "dateDeleted": null,
-        "timesWorn": 8,
-        "clothingIds": [89, 25, 61, 46],
+        "clothingIds": [95, 26, 60, 45],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
         "ownedByUser": true
@@ -72,17 +61,6 @@
         "dateDeleted": null,
         "timesWorn": 8,
         "clothingIds": [93, 27, 62, 48],
-        "formalityRatingAvg": 1,
-        "warmthRatingAvg": 1,
-        "ownedByUser": true
-    },
-    {
-        "id": 8,
-        "dateAdded": "2023-11-29",
-        "dateLastWorn": "2023-11-29",
-        "dateDeleted": null,
-        "timesWorn": 8,
-        "clothingIds": [94, 23, 67, 45],
         "formalityRatingAvg": 1,
         "warmthRatingAvg": 1,
         "ownedByUser": true

@@ -27,7 +27,7 @@ export default function HomePage({
         let idx = 0;
         let attempts = 0;
         do {
-            idx = Math.floor(Math.random() * (outfitsData.length - 1));
+            idx = Math.floor(Math.random() * outfitsData.length);
             attempts += 1;
         } while (
             (attempts < 20 &&
@@ -77,6 +77,9 @@ export default function HomePage({
         }
     }
 
+    useEffect(() => {
+        handleChangeOutfit();
+    }, []);
 
     // Sprays confetti on screen after user has picked out an outfit
     useEffect(() => {
@@ -122,16 +125,16 @@ export default function HomePage({
             <View style={styles.optionsContainer}>
                 <View style={styles.featureRow}>
                     <Text style={styles.label}>Casual</Text>
-                <Slider
-                    style={{ width: 150, height: 40 }}
-                    minimumValue={1}
-                    maximumValue={5}
-                    step={1}
-                    value={formalityLevel}
-                    minimumTrackTintColor="#81b0ff"
-                    maximumTrackTintColor="#000000"
-                    onSlidingComplete={handleFormalityChange}
-                />
+                    <Slider
+                        style={{ width: 150, height: 40 }}
+                        minimumValue={1}
+                        maximumValue={5}
+                        step={1}
+                        value={formalityLevel}
+                        minimumTrackTintColor="#81b0ff"
+                        maximumTrackTintColor="#000000"
+                        onSlidingComplete={handleFormalityChange}
+                    />
                     <Text style={styles.label}>Formal</Text>
                 </View>
 
@@ -168,12 +171,12 @@ const styles = StyleSheet.create({
         width: "60%",
         alignItems: "center",
         height: "100%",
+    },
     featureRow: {
         flexDirection: "row",
         justifyContent: "space-between",
         alignItems: "center",
-        marginBottom: 5,
-        width: "60%",
+        marginBottom: 20,
     },
     heading: {
         color: "black",
@@ -190,12 +193,13 @@ const styles = StyleSheet.create({
         height: "50%",
     },
     optionsContainer: {
-        marginTop: -420,
+        marginTop: -370,
         width: "100%",
         height: "30%",
         alignItems: "center",
     },
     label: {
-        fontSize: 20,
+        padding: 10,
+        fontSize: 18,
     },
 });

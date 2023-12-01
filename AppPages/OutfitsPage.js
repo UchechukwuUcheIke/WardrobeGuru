@@ -36,7 +36,7 @@ export default function OutfitsPage({
     updateOutfitsData,
 }) {
     const Outfits = outfitsData
-        .filter((item) => item.dateDeleted === null && item.ownedByUser)
+        .filter((item) => item.dateDeleted === null)
         .sort(SortMostRecent);
 
     const [Select, setSelect] = useState(false);
@@ -44,9 +44,7 @@ export default function OutfitsPage({
 
     const navigation = useNavigation();
 
-    // TODO: Update this to use OutfitDisplay instead of Image (whether select is enabled or not)
     function RenderItem({ item }) {
-        console.log("HERE")
         return (
             <View style={{ marginTop: 10, padding: 20 }}>
                 {Select ? (
@@ -75,7 +73,6 @@ export default function OutfitsPage({
                             outfit={item}
                             clothesData={clothesData}
                         />
-
                     </TouchableOpacity>
                 )}
             </View>

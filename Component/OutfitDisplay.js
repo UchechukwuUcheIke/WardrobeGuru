@@ -11,55 +11,66 @@ export default function OutfitDisplay({ outfit, clothesData, style }) {
     const bottomId = outfit.clothingIds[2];
     const shoeId = outfit.clothingIds[3];
 
-    let hatURL = "";
-    let topURL = "";
-    let bottomURL = "";
-    let shoeURL = "";
+    let hat;
+    let top;
+    let bottom;
+    let shoe;
 
     // Iterate through outfits list and get imageURL of clothes with corresponding ids
     clothesData.forEach((clothes) => {
         const clothesId = clothes.id;
         if (clothesId === hatId) {
-            hatURL = clothes.imageUrl;
+            hat = clothes;
         }
         if (clothesId === topId) {
-            topURL = clothes.imageUrl;
+            top = clothes;
         }
         if (clothesId === bottomId) {
-            bottomURL = clothes.imageUrl;
+            bottom = clothes;
         }
         if (clothesId === shoeId) {
-            shoeURL = clothes.imageUrl;
+            shoe = clothes;
         }
     });
 
     return (
         <View style={style}>
             <Image
-                style={styles.image}
+                style={[
+                    styles.image,
+                    {
+                        borderWidth: hat.ownedByUser ? 0 : 2,
+                    },
+                ]}
                 source={{
-                    uri: hatURL,
+                    uri: hat.imageUrl,
                 }}
                 resizeMode="contain"
             />
             <Image
-                style={styles.image}
+                style={[styles.image, { borderWidth: top.ownedByUser ? 0 : 2 }]}
                 source={{
-                    uri: topURL,
+                    uri: top.imageUrl,
                 }}
                 resizeMode="contain"
             />
             <Image
-                style={styles.image}
+                style={[
+                    styles.image,
+                    { borderWidth: bottom.ownedByUser ? 0 : 2 },
+                ]}
                 source={{
-                    uri: bottomURL,
+                    uri: bottom.imageUrl,
                 }}
                 resizeMode="contain"
             />
             <Image
-                style={styles.image}
+                style={[
+                    styles.image,
+                    { borderWidth: shoe.ownedByUser ? 0 : 2 },
+                ]}
                 source={{
-                    uri: shoeURL,
+                    uri: shoe.imageUrl,
                 }}
                 resizeMode="contain"
             />
@@ -77,5 +88,6 @@ const styles = StyleSheet.create({
         width: "100%",
         height: "20%",
         marginBottom: "1%",
+        borderColor: "#4882F9",
     },
 });
