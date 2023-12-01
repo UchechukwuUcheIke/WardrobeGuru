@@ -10,18 +10,26 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
     //   const [warmth, setWarmth] = useState(item.warmth || '');
     //   // add more states for other attributes
 
+    const [id, setId] = useState("");
     const [nickname, setNickname] = useState("");
     const [category, setCategory] = useState("");
     const [formality, setFormality] = useState("");
     const [warmth, setWarmth] = useState("");
+    const [dateAdded, setDateAdded] = useState("");
+    const [dateLastWorn, setDateLastWorn] = useState("");
+    const [timesWorn, setTimesWorn] = useState("");
 
     // This effect will update the state whenever the item prop changes
     useEffect(() => {
         if (item) {
+            setId(item.id || "");
             setNickname(item.nickname || "");
             setCategory(item.category || "");
             setFormality(item.formality || "");
             setWarmth(item.warmth || "");
+            setDateAdded(item.dateAdded || "");
+            setDateLastWorn(item.dateLastWorn || "");
+            setTimesWorn(item.timesWorn || "");
         }
     }, [item]); // Only re-run the effect if the item changes
 
@@ -35,7 +43,7 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
             warmth /* ... other attributes */,
         });
         onClose(); // Close the modal        
-        setEditMode(false); 
+        toggleEditMode(); 
     };
 
     const getTextInputStyle = (isEditMode) => {
@@ -68,13 +76,13 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
                         resizeMode="contain"
                     />
                 )}
-                <Text>Nick Name:</Text>
+                {/* <Text>Nick Name:</Text>
                 <TextInput
                     style={getTextInputStyle(editMode)}
                     onChangeText={setNickname}
                     value={nickname}
                     editable={editMode}
-                />
+                /> */}
                 <Text>Category:</Text>
                 <TextInput
                     style={getTextInputStyle(editMode)}
@@ -95,6 +103,24 @@ function ClothingItemModal({ visible, onClose, onSave, item, editMode, toggleEdi
                     onChangeText={setWarmth}
                     value={warmth}
                     editable={editMode}
+                />
+                <Text>Date Added:</Text>
+                <TextInput
+                    style={getTextInputStyle(false)}
+                    value={dateAdded}
+                    editable={false}
+                />
+                <Text>Date Last Worn:</Text>
+                <TextInput
+                    style={getTextInputStyle(false)}
+                    value={dateLastWorn}
+                    editable={false}
+                />
+                <Text>Times Worn:</Text>
+                <TextInput
+                    style={getTextInputStyle(false)}
+                    value={timesWorn}
+                    editable={false}
                 />
                 {/* Buttons for Edit and Close */}
                 {!editMode && (
