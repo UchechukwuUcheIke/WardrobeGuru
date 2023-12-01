@@ -12,12 +12,12 @@ import {
 } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
-import Data from "../assets/data/saved_outfits.json";
+import Data from "../assets/data/outfits.json";
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function OutfitPage() {
+export default function OutfitsPage() {
     const [Select, setSelect] = useState(false);
     const [Outfits, setOutfits] = useState(Data.Outfits);
     const navigation = useNavigation();

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 /* eslint-disable react/jsx-no-bind */
 /* eslint-disable react/no-unstable-nested-components */
 import React, { useEffect, useState } from "react";
@@ -18,19 +19,66 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import TextButton from "../Component/TextButton";
 import ClothingItemModal from "../Component/ClothingItemModal";
 
-import Data from "../assets/data/wardrobe.json";
-
 const Tab = createMaterialTopTabNavigator();
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
 
-export default function WardrobePage() {
+function SortMostRecent(a, b) {
+    const dateA = new Date(a.dateAdded);
+    const dateB = new Date(b.dateAdded);
+
+    if (dateA < dateB) {
+        return -1;
+    }
+    if (dateA > dateB) {
+        return 1;
+    }
+    return 0;
+}
+
+export default function WardrobePage({ clothesData, updateClothesData }) {
     const [Select, setSelect] = useState(false);
-    const [Tops, setTops] = useState(Data.Tops);
-    const [Bottoms, setBottoms] = useState(Data.Bottoms);
-    const [Accessories, setAccessories] = useState(Data.Accessories);
-    const [Shoes, setShoes] = useState(Data.Shoes);
+    const [Accessories, setAccessories] = useState(
+        clothesData
+            .filter(
+                (item) =>
+                    item.dateDeleted === null &&
+                    item.ownedByUser &&
+                    item.category === "accessories"
+            )
+            .sort(SortMostRecent)
+    );
+    const [Tops, setTops] = useState(
+        clothesData
+            .filter(
+                (item) =>
+                    item.dateDeleted === null &&
+                    item.ownedByUser &&
+                    item.category === "tops"
+            )
+            .sort(SortMostRecent)
+    );
+    const [Bottoms, setBottoms] = useState(
+        clothesData
+            .filter(
+                (item) =>
+                    item.dateDeleted === null &&
+                    item.ownedByUser &&
+                    item.category === "bottoms"
+            )
+            .sort(SortMostRecent)
+    );
+    const [Shoes, setShoes] = useState(
+        clothesData
+            .filter(
+                (item) =>
+                    item.dateDeleted === null &&
+                    item.ownedByUser &&
+                    item.category === "shoes"
+            )
+            .sort(SortMostRecent)
+    );
 
     const [Adding, setAdding] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -48,7 +96,7 @@ export default function WardrobePage() {
                         onPress={() => SelectItem(item)}
                     >
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={{
                                 width: 140,
                                 height: 140,
@@ -61,7 +109,7 @@ export default function WardrobePage() {
                 ) : (
                     <TouchableOpacity style={styles.selectButton}>
                         <Image
-                            source={{ uri: item.url }}
+                            source={{ uri: item.imageUrl }}
                             style={styles.image}
                         />
                     </TouchableOpacity>
@@ -73,8 +121,9 @@ export default function WardrobePage() {
     RenderItem.propTypes = {
         item: PropTypes.arrayOf(
             PropTypes.shape({
-                url: PropTypes.string.isRequired,
+                imageUrl: PropTypes.string.isRequired,
                 selected: PropTypes.bool.isRequired,
+                ownedByUser: PropTypes.bool.isRequired,
             })
         ).isRequired,
     };
@@ -214,14 +263,36 @@ export default function WardrobePage() {
     };
 
     const DeleteItems = () => {
-        const newTops = Tops.filter((item) => !item.selected);
-        setTops(newTops);
-        const newBottoms = Bottoms.filter((item) => !item.selected);
-        setBottoms(newBottoms);
-        const newAccessories = Accessories.filter((item) => !item.selected);
-        setAccessories(newAccessories);
-        const newShoes = Shoes.filter((item) => !item.selected);
-        setShoes(newShoes);
+        const newAccessories = Accessories.map((item) => {
+            if (item.selected) {
+                return { ...item, dateDeleted: Date.now(), selected: false };
+            }
+            return item;
+        });
+        const newTops = Tops.map((item) => {
+            if (item.selected) {
+                return { ...item, dateDeleted: Date.now(), selected: false };
+            }
+            return item;
+        });
+        const newBottoms = Bottoms.map((item) => {
+            if (item.selected) {
+                return { ...item, dateDeleted: Date.now(), selected: false };
+            }
+            return item;
+        });
+        const newShoes = Shoes.map((item) => {
+            if (item.selected) {
+                return { ...item, dateDeleted: Date.now(), selected: false };
+            }
+            return item;
+        });
+        updateClothesData({
+            ...newAccessories,
+            ...newTops,
+            ...newBottoms,
+            ...newShoes,
+        });
         setSelect(false);
     };
 
@@ -271,7 +342,8 @@ export default function WardrobePage() {
         // Step 1: Simulate selecting a photo
         const newItem = {
             id: Date.now().toString(), // Unique ID for the new item
-            url: "https://store.nytimes.com/cdn/shop/products/TruthHoodie-WhiteFront_1024x1024.jpg?v=1571439084",
+            imageUrl:
+                "https://store.nytimes.com/cdn/shop/products/TruthHoodie-WhiteFront_1024x1024.jpg?v=1571439084",
             category: "tops",
             selected: false,
             nickname: "New Hoodie",
@@ -334,9 +406,9 @@ export default function WardrobePage() {
                 )}
             </Modal>
             <Tab.Navigator>
+                <Tab.Screen name="Accessories" component={AccessoriesTab} />
                 <Tab.Screen name="Tops" component={TopsTab} />
                 <Tab.Screen name="Bottoms" component={BottomsTab} />
-                <Tab.Screen name="Accessories" component={AccessoriesTab} />
                 <Tab.Screen name="Shoes" component={ShoesTab} />
             </Tab.Navigator>
             <ClothingItemModal

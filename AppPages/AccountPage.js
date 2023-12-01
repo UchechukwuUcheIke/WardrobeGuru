@@ -1,3 +1,5 @@
+/* eslint-disable react/no-unstable-nested-components */
+/* eslint-disable react/prop-types */
 import React from "react";
 import PropTypes from "prop-types";
 import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
@@ -62,7 +64,12 @@ Tile.propTypes = {
 };
 
 // TODO: Add other pages as screens
-export default function AccountPage() {
+export default function AccountPage({
+    clothesData,
+    outfitsData,
+    updateClothesData,
+    updateOutfitsData,
+}) {
     const Stack = createStackNavigator();
 
     return (
@@ -77,7 +84,17 @@ export default function AccountPage() {
                 component={MenuScreen}
                 options={{ headerShown: false }}
             />
-            <Stack.Screen name="Recently Deleted" component={RecentlyDeleted} />
+            <Stack.Screen
+                name="Recently Deleted"
+                component={() => (
+                    <RecentlyDeleted
+                        clothesData={clothesData}
+                        outfitsData={outfitsData}
+                        updateClothesData={updateClothesData}
+                        updateOutfitsData={updateOutfitsData}
+                    />
+                )}
+            />
         </Stack.Navigator>
     );
 }
