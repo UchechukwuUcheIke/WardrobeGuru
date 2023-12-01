@@ -71,12 +71,7 @@ export default function WardrobePage() {
     }
 
     RenderItem.propTypes = {
-        item: PropTypes.arrayOf(
-            PropTypes.shape({
-                url: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
-            })
-        ).isRequired,
+        item: PropTypes.array.isRequired,
     };
 
     function EmptyList(items) {
