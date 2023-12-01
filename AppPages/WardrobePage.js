@@ -38,48 +38,18 @@ function SortMostRecent(a, b) {
 }
 
 export default function WardrobePage({ clothesData, updateClothesData }) {
-    console.log(clothesData);
+    const Clothes = clothesData
+        .filter((item) => item.dateDeleted === null && item.ownedByUser)
+        .sort(SortMostRecent);
+    const Accessories = Clothes.filter(
+        (item) => item.category === "accessories"
+    );
+    const Tops = Clothes.filter((item) => item.category === "tops");
+    const Bottoms = Clothes.filter((item) => item.category === "bottoms");
+    const Shoes = Clothes.filter((item) => item.category === "shoes");
+
     const [Select, setSelect] = useState(false);
-    const [Accessories, setAccessories] = useState(
-        clothesData
-            .filter(
-                (item) =>
-                    item.dateDeleted === null &&
-                    item.ownedByUser &&
-                    item.category === "accessories"
-            )
-            .sort(SortMostRecent)
-    );
-    const [Tops, setTops] = useState(
-        clothesData
-            .filter(
-                (item) =>
-                    item.dateDeleted === null &&
-                    item.ownedByUser &&
-                    item.category === "tops"
-            )
-            .sort(SortMostRecent)
-    );
-    const [Bottoms, setBottoms] = useState(
-        clothesData
-            .filter(
-                (item) =>
-                    item.dateDeleted === null &&
-                    item.ownedByUser &&
-                    item.category === "bottoms"
-            )
-            .sort(SortMostRecent)
-    );
-    const [Shoes, setShoes] = useState(
-        clothesData
-            .filter(
-                (item) =>
-                    item.dateDeleted === null &&
-                    item.ownedByUser &&
-                    item.category === "shoes"
-            )
-            .sort(SortMostRecent)
-    );
+    const [Selected, setSelected] = useState([]);
 
     const [Adding, setAdding] = useState(false);
     const [isModalVisible, setIsModalVisible] = useState(false);
@@ -102,7 +72,7 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
                                 width: 140,
                                 height: 140,
                                 margin: "2.5%",
-                                borderWidth: item.selected ? 3 : 0,
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
                             resizeMode="contain"
@@ -125,7 +95,6 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
         item: PropTypes.arrayOf(
             PropTypes.shape({
                 imageUrl: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
                 ownedByUser: PropTypes.bool.isRequired,
             })
         ).isRequired,
@@ -202,117 +171,27 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
 
     const ToggleSelect = () => {
         if (Select) {
-            const newTops = Tops.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setTops(newTops);
-            const newBottoms = Bottoms.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setBottoms(newBottoms);
-            const newAccessories = Accessories.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setAccessories(newAccessories);
-            const newShoes = Shoes.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setShoes(newShoes);
+            setSelected([]);
         }
         setSelect(!Select);
     };
 
     const SelectItem = (target) => {
-        const newTops = Tops.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setTops(newTops);
-        const newBottoms = Bottoms.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setBottoms(newBottoms);
-        const newAccessories = Accessories.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setAccessories(newAccessories);
-        const newShoes = Shoes.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setShoes(newShoes);
+        setSelected([...Selected, target.id]);
     };
 
     const DeleteItems = () => {
-        const newAccessories = Accessories.map((item) => {
-            if (item.selected) {
-                return {
-                    ...item,
-                    dateDeleted: new Date().toJSON(),
-                    selected: false,
-                };
-            }
-            return item;
-        });
-        const newTops = Tops.map((item) => {
-            if (item.selected) {
-                return {
-                    ...item,
-                    dateDeleted: new Date().toJSON(),
-                    selected: false,
-                };
-            }
-            return item;
-        });
-        const newBottoms = Bottoms.map((item) => {
-            if (item.selected) {
-                return {
-                    ...item,
-                    dateDeleted: new Date().toJSON(),
-                    selected: false,
-                };
-            }
-            return item;
-        });
-        const newShoes = Shoes.map((item) => {
-            if (item.selected) {
-                return {
-                    ...item,
-                    dateDeleted: new Date().toJSON(),
-                    selected: false,
-                };
-            }
-            return item;
-        });
-        updateClothesData([
-            ...newAccessories,
-            ...newTops,
-            ...newBottoms,
-            ...newShoes,
-        ]);
-        setSelect(false);
+        updateClothesData(
+            clothesData.map((item) => {
+                if (Selected.includes(item.id)) {
+                    return {
+                        ...item,
+                        dateDeleted: new Date().toJSON(),
+                    };
+                }
+                return item;
+            })
+        );
     };
 
     function showModal() {
@@ -371,7 +250,6 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
             formalityRating: 2,
             warmthRating: 4,
             ownedByUser: true,
-            selected: false,
         };
 
         // Step 2: Show loading icon
@@ -396,7 +274,6 @@ export default function WardrobePage({ clothesData, updateClothesData }) {
     // Define a function to handle saving the edited item
     const handleSaveItem = (editedItem) => {
         updateClothesData([...clothesData, editedItem]);
-        setIsEditModalVisible(false); // Hide the edit modal
     };
 
     return (

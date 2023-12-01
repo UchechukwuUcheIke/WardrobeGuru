@@ -9,8 +9,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 2,
@@ -22,8 +21,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 3,
@@ -35,8 +33,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 4,
@@ -48,8 +45,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 5,
@@ -61,8 +57,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 6,
@@ -74,8 +69,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 7,
@@ -87,8 +81,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 8,
@@ -100,8 +93,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 9,
@@ -113,8 +105,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 10,
@@ -126,8 +117,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 11,
@@ -139,8 +129,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 12,
@@ -152,8 +141,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 13,
@@ -165,8 +153,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 14,
@@ -178,8 +165,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 15,
@@ -191,8 +177,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 16,
@@ -204,8 +189,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 17,
@@ -217,8 +201,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 18,
@@ -230,8 +213,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 19,
@@ -243,8 +225,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 20,
@@ -256,8 +237,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 21,
@@ -269,8 +249,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 22,
@@ -282,8 +261,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 2,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 23,
@@ -295,8 +273,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 24,
@@ -308,8 +285,7 @@
         "category": "tops",
         "formalityRating": 3,
         "warmthRating": 2,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 25,
@@ -321,8 +297,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 26,
@@ -334,8 +309,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 27,
@@ -347,8 +321,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 28,
@@ -360,8 +333,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 29,
@@ -373,8 +345,7 @@
         "category": "tops",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 30,
@@ -386,8 +357,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 31,
@@ -399,8 +369,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 32,
@@ -412,8 +381,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 33,
@@ -425,8 +393,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 34,
@@ -438,8 +405,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 35,
@@ -451,8 +417,7 @@
         "category": "tops",
         "formalityRating": 4,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 36,
@@ -464,8 +429,7 @@
         "category": "tops",
         "formalityRating": 5,
         "warmthRating": 4,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 37,
@@ -477,8 +441,7 @@
         "category": "tops",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 38,
@@ -490,8 +453,7 @@
         "category": "tops",
         "formalityRating": 5,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 39,
@@ -503,8 +465,7 @@
         "category": "shoes",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 40,
@@ -516,8 +477,7 @@
         "category": "shoes",
         "formalityRating": 2,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 41,
@@ -529,8 +489,7 @@
         "category": "shoes",
         "formalityRating": 3,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 42,
@@ -542,8 +501,7 @@
         "category": "shoes",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 43,
@@ -555,8 +513,7 @@
         "category": "shoes",
         "formalityRating": 4,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 44,
@@ -568,8 +525,7 @@
         "category": "shoes",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 45,
@@ -581,8 +537,7 @@
         "category": "shoes",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 46,
@@ -594,8 +549,7 @@
         "category": "shoes",
         "formalityRating": 5,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 47,
@@ -607,8 +561,7 @@
         "category": "shoes",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 48,
@@ -620,8 +573,7 @@
         "category": "shoes",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 49,
@@ -633,8 +585,7 @@
         "category": "shoes",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 50,
@@ -646,8 +597,7 @@
         "category": "shoes",
         "formalityRating": 3,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 51,
@@ -659,8 +609,7 @@
         "category": "bottoms",
         "formalityRating": 5,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 52,
@@ -672,8 +621,7 @@
         "category": "bottoms",
         "formalityRating": 5,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 53,
@@ -685,8 +633,7 @@
         "category": "bottoms",
         "formalityRating": 4,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 54,
@@ -698,8 +645,7 @@
         "category": "bottoms",
         "formalityRating": 5,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 55,
@@ -711,8 +657,7 @@
         "category": "bottoms",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 56,
@@ -724,8 +669,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 57,
@@ -737,8 +681,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 58,
@@ -750,8 +693,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 59,
@@ -763,8 +705,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 4,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 60,
@@ -776,8 +717,7 @@
         "category": "bottoms",
         "formalityRating": 3,
         "warmthRating": 5,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 61,
@@ -789,8 +729,7 @@
         "category": "bottoms",
         "formalityRating": 3,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 62,
@@ -802,8 +741,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 3,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 63,
@@ -815,8 +753,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 64,
@@ -828,8 +765,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 65,
@@ -841,8 +777,7 @@
         "category": "bottoms",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 66,
@@ -854,8 +789,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 67,
@@ -867,8 +801,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 68,
@@ -880,8 +813,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 69,
@@ -893,8 +825,7 @@
         "category": "bottoms",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 70,
@@ -906,8 +837,7 @@
         "category": "bottoms",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 71,
@@ -919,8 +849,7 @@
         "category": "bottoms",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 72,
@@ -932,8 +861,7 @@
         "category": "bottoms",
         "formalityRating": 4,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 73,
@@ -945,8 +873,7 @@
         "category": "bottoms",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 74,
@@ -958,8 +885,7 @@
         "category": "bottoms",
         "formalityRating": 4,
         "warmthRating": 3,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 75,
@@ -971,8 +897,7 @@
         "category": "bottoms",
         "formalityRating": 4,
         "warmthRating": 3,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 76,
@@ -984,8 +909,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 77,
@@ -997,8 +921,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 78,
@@ -1010,8 +933,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 79,
@@ -1023,8 +945,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 80,
@@ -1036,8 +957,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 2,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 81,
@@ -1049,8 +969,7 @@
         "category": "accessories",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 82,
@@ -1062,8 +981,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 83,
@@ -1075,8 +993,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 84,
@@ -1088,8 +1005,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 85,
@@ -1101,8 +1017,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 86,
@@ -1114,8 +1029,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 4,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 87,
@@ -1127,8 +1041,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 5,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 88,
@@ -1140,8 +1053,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 4,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 89,
@@ -1153,8 +1065,7 @@
         "category": "accessories",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 90,
@@ -1166,8 +1077,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 91,
@@ -1179,8 +1089,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 92,
@@ -1192,8 +1101,7 @@
         "category": "accessories",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 93,
@@ -1205,8 +1113,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 94,
@@ -1218,8 +1125,7 @@
         "category": "accessories",
         "formalityRating": 4,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 95,
@@ -1231,8 +1137,7 @@
         "category": "accessories",
         "formalityRating": 5,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 96,
@@ -1244,8 +1149,7 @@
         "category": "accessories",
         "formalityRating": 3,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 97,
@@ -1257,8 +1161,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     },
     {
         "id": 98,
@@ -1270,8 +1173,7 @@
         "category": "accessories",
         "formalityRating": 2,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 99,
@@ -1283,8 +1185,7 @@
         "category": "accessories",
         "formalityRating": 1,
         "warmthRating": 1,
-        "ownedByUser": true,
-        "selected": false
+        "ownedByUser": true
     },
     {
         "id": 100,
@@ -1296,7 +1197,6 @@
         "category": "accessories",
         "formalityRating": 5,
         "warmthRating": 1,
-        "ownedByUser": false,
-        "selected": false
+        "ownedByUser": false
     }
 ]

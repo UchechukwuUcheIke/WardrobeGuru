@@ -43,26 +43,23 @@ export default function RecentlyDeletedPage({
     updateClothesData,
     updateOutfitsData,
 }) {
+    const Clothes = clothesData
+        .filter(
+            (item) =>
+                item.dateDeleted &&
+                Date.now() - Date.parse(item.dateDeleted) < THIRTY_DAYS_IN_MS
+        )
+        .sort(SortMostRecent);
+    const Outfits = outfitsData
+        .filter(
+            (item) =>
+                item.dateDeleted &&
+                Date.UTC - Date.parse(item.dateDeleted) < THIRTY_DAYS_IN_MS
+        )
+        .sort(SortMostRecent);
+
     const [Select, setSelect] = useState(false);
-    const [Clothes, setClothes] = useState(
-        clothesData
-            .filter(
-                (item) =>
-                    item.dateDeleted &&
-                    Date.now() - Date.parse(item.dateDeleted) <
-                        THIRTY_DAYS_IN_MS
-            )
-            .sort(SortMostRecent)
-    );
-    const [Outfits, setOutfits] = useState(
-        outfitsData
-            .filter(
-                (item) =>
-                    item.dateDeleted &&
-                    Date.UTC - Date.parse(item.dateDeleted) < THIRTY_DAYS_IN_MS
-            )
-            .sort(SortMostRecent)
-    );
+    const [Selected, setSelected] = useState([]);
 
     const navigation = useNavigation();
 
@@ -80,7 +77,7 @@ export default function RecentlyDeletedPage({
                                 width: 140,
                                 height: 140,
                                 margin: "2.5%",
-                                borderWidth: item.selected ? 3 : 0,
+                                borderWidth: Selected.includes(item.id) ? 3 : 0,
                                 borderColor: "#33A8FF",
                             }}
                             resizeMode="contain"
@@ -103,7 +100,6 @@ export default function RecentlyDeletedPage({
         item: PropTypes.arrayOf(
             PropTypes.shape({
                 imageUrl: PropTypes.string.isRequired,
-                selected: PropTypes.bool.isRequired,
             })
         ).isRequired,
     };
@@ -144,62 +140,41 @@ export default function RecentlyDeletedPage({
         );
     }
 
-    // TODO: only run the function relevant to the current tab
     const ToggleSelect = () => {
         if (Select) {
-            const newClothes = Clothes.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setClothes(newClothes);
-            const newOutfits = Outfits.map((item) => {
-                if (item.selected) {
-                    return { ...item, selected: !item.selected };
-                }
-                return item;
-            });
-            setOutfits(newOutfits);
+            setSelected([]);
         }
         setSelect(!Select);
     };
 
-    // TODO: only run the function relevant to the current tab
     const SelectItem = (target) => {
-        const newClothes = Clothes.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setClothes(newClothes);
-        const newOutfits = Outfits.map((item) => {
-            if (item.id === target.id) {
-                return { ...item, selected: !item.selected };
-            }
-            return item;
-        });
-        setOutfits(newOutfits);
+        setSelected([...Selected, target.id]);
     };
 
     // TODO: only run the function relevant to the current tab
     const DeleteItems = () => {
-        const newClothes = Clothes.map((item) => {
-            if (item.selected) {
-                return { ...item, dateDeleted: null, selected: false };
-            }
-            return item;
-        });
-        updateClothesData(newClothes);
-        const newOutfits = Outfits.map((item) => {
-            if (item.selected) {
-                return { ...item, dateDeleted: null, selected: false };
-            }
-            return item;
-        });
-        updateOutfitsData(newOutfits);
-        setSelect(false);
+        updateClothesData(
+            clothesData.map((item) => {
+                if (Selected.includes(item.id)) {
+                    return {
+                        ...item,
+                        dateDeleted: null,
+                    };
+                }
+                return item;
+            })
+        );
+        updateOutfitsData(
+            outfitsData.map((item) => {
+                if (Selected.includes(item.id)) {
+                    return {
+                        ...item,
+                        dateDeleted: null,
+                    };
+                }
+                return item;
+            })
+        );
     };
 
     useEffect(() => {
