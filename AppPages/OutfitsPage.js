@@ -13,6 +13,7 @@ import {
 import Icon from "react-native-vector-icons/MaterialIcons";
 import { useNavigation } from "@react-navigation/native";
 import OutfitDisplay from "../Component/OutfitDisplay";
+import OutfitModal from "../Component/OutfitModal";
 
 // TODO: set this dynamically based on screen width
 const NUM_COLUMNS = 2;
@@ -42,6 +43,10 @@ export default function OutfitsPage({
     const [Select, setSelect] = useState(false);
     const [Selected, setSelected] = useState([]);
 
+    const [isEditModalVisible, setIsEditModalVisible] = useState(false);
+    const [editMode, setEditMode] = useState(false);
+    const [currentItem, setCurrentItem] = useState(outfitsData[0]);
+
     const navigation = useNavigation();
 
     function RenderItem({ item }) {
@@ -67,7 +72,9 @@ export default function OutfitsPage({
                         />
                     </TouchableOpacity>
                 ) : (
-                    <TouchableOpacity style={styles.selectButton}>
+                    <TouchableOpacity 
+                        style={styles.selectButton}
+                        onPress={() => showOutfitDetail(item)}>
                         <OutfitDisplay
                             style={styles.OutfitDisplay}
                             outfit={item}
@@ -108,6 +115,15 @@ export default function OutfitsPage({
                     renderItem={RenderItem}
                     ListEmptyComponent={EmptyList}
                 />
+                <OutfitModal
+                    visible={isEditModalVisible}
+                    onClose={() => setIsEditModalVisible(false)}
+                    onSave={handleSaveItem}
+                    item={currentItem}
+                    editMode={editMode} // Pass this state down to the modal
+                    toggleEditMode={toggleEditMode}
+                    clothesData={clothesData}
+                />
             </View>
         );
     }
@@ -142,6 +158,32 @@ export default function OutfitsPage({
     const AddItems = () => {
         navigation.navigate("Generator");
     };
+
+    const showOutfitDetail = (item) => {
+        setCurrentItem(item);
+        setEditMode(false);
+        setIsEditModalVisible(true);
+    };
+
+    const toggleEditMode = () => {
+        setEditMode(!editMode);
+    };
+
+    const handleSaveItem = (editedItem) => {
+        const index = outfitsData.findIndex(
+            (item) => item.id === editedItem.id
+        );
+        if (index >= 0) {
+            // update existing item
+            const temp = [...outfitsData];
+            temp[index] = editedItem;
+            updateOutfitsData(temp);
+        } else {
+            // add new item
+            updateOutfitsData([...outfitsData, editedItem]);
+        }
+    };
+
 
     useEffect(() => {
         if (Select) {
